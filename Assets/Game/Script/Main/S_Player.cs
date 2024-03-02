@@ -8,6 +8,7 @@ public class S_Player : MonoBehaviour
     //Child
     [SerializeField] private GameObject _playerMesh;
     [SerializeField] private GameObject _playerCamera;
+    [SerializeField] private Rigidbody _playerRigidbody;
 
     //Movement
     [SerializeField] private float _playerSpeed = 4f;
@@ -104,6 +105,10 @@ public class S_Player : MonoBehaviour
                 if (hitColliders[i].gameObject.tag == "Enemy")
                 {
                     hitColliders[i].gameObject.GetComponent<AIController>().TakeDamage(_hitDamage);
+                    //Repulse the enemy
+                    Vector3 repulseDirection = hitColliders[i].transform.position - transform.position;
+                    repulseDirection.y = 0;
+                    hitColliders[i].gameObject.GetComponent<AIController>().RepulseEnemyBasic(repulseDirection);
                 }
             }
             StartCoroutine(attackCouldown(_hitCooldown));
@@ -193,5 +198,19 @@ public class S_Player : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(_playerMesh.transform.position, _hitRange);
+    }
+
+    public void RepulsePlayer(Vector3 repulseDirection)
+    {
+        //Repulse the player
+        _playerRigidbody.AddForce(repulseDirection.normalized * 5, ForceMode.Impulse);
+        //Stop the impulse after 0.5s
+        StartCoroutine(stopImpulse(0.5f));
+    }
+
+    private IEnumerator stopImpulse(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _playerRigidbody.velocity = Vector3.zero;
     }
 }

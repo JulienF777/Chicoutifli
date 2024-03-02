@@ -9,6 +9,8 @@ public class AIBoss : MonoBehaviour
     public float desiredDistance = 5f; // Desired distance from the player
     public float randomMoveInterval = 3f; // Interval for random movement
     public float rotationSpeed = 5f; // Speed of rotation
+    public float shootCooldown = 2f; // Cooldown for shooting
+    public GameObject bulletPrefab; // Reference to the bullet prefab
 
     private enum BossState
     {
@@ -53,6 +55,11 @@ public class AIBoss : MonoBehaviour
             PerformRandomMoveAroundPlayer();
             nextRandomMoveTime = Time.time + randomMoveInterval;
             RotateTowardsPlayer();
+            if(Time.time >= shootCooldown)
+            {
+                Shoot();
+                shootCooldown = Time.time + shootCooldown;
+            }
         }
         else if (currentState == BossState.ZoneAttack)
         {
@@ -70,6 +77,13 @@ public class AIBoss : MonoBehaviour
             // Update the next random move time
             nextRandomMoveTime = Time.time + randomMoveInterval;
         }
+    }
+
+    private void Shoot()
+    {
+        // Create a bullet and set its position and direction
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        bullet.transform.LookAt(playerTransform);
     }
 
     private void SwitchToZoneAttack()

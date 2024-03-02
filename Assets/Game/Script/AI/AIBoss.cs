@@ -8,6 +8,7 @@ public class AIBoss : MonoBehaviour
     public float attackRange = 2f; // Range for attacking
     public float desiredDistance = 5f; // Desired distance from the player
     public float randomMoveInterval = 3f; // Interval for random movement
+    public float rotationSpeed = 5f; // Speed of rotation
 
     private enum BossState
     {
@@ -51,6 +52,7 @@ public class AIBoss : MonoBehaviour
         {
             PerformRandomMoveAroundPlayer();
             nextRandomMoveTime = Time.time + randomMoveInterval;
+            RotateTowardsPlayer();
         }
         else if (currentState == BossState.ZoneAttack)
         {
@@ -98,6 +100,15 @@ public class AIBoss : MonoBehaviour
         randomDirection += playerTransform.position;
         // Move the boss to the random destination using NavMeshAgent
         MoveTo(randomDirection);
+    }
+
+    private void RotateTowardsPlayer()
+    {
+        // Calculate the direction to the player
+        Vector3 directionToPlayer = playerTransform.position - transform.position;
+        // Rotate towards the player's direction
+        Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     private void MoveTo(Vector3 destination)

@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/USS/Buttons.uss?fileID=7433441132597879392&amp;guid=9721866a1252d0b428e67c802874016f&amp;type=3#Buttons" />
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);">
+            <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 50%; left: 25%;">
+                <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 40%; align-items: center; justify-content: center;">
+                    <ui:Label tabindex="-1" text="VICTOIRE" display-tooltip-when-elided="true" name="Label" style="-unity-font: url(&apos;project://database/Assets/Fonts/ProtestRevolution-Regular.ttf?fileID=12800000&amp;guid=7d2d6dbb906304045a95fae3a03cb51e&amp;type=3#ProtestRevolution-Regular&apos;); -unity-font-definition: initial; color: rgb(214, 212, 0); font-size: 80px;" />
+                    <ui:Button text="Retour au menu" display-tooltip-when-elided="true" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

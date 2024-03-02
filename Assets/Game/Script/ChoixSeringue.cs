@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class ChoixSeringue : MonoBehaviour
 {
@@ -13,6 +14,26 @@ public class ChoixSeringue : MonoBehaviour
     private Label texteDialogueSeringue;
     private Button seringueGauche;
     private Button seringueDroite;
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Alpha")
+        {
+            choixSeringueUI = GameObject.Find("ChoixSeringue").GetComponent<UIDocument>();
+            HUD = GameObject.Find("Statistiques").GetComponent<UIDocument>();
+            choixSeringueUI.rootVisualElement.visible = false;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -27,24 +48,35 @@ public class ChoixSeringue : MonoBehaviour
         texteDialogueSeringue.text = "Merci d'avoir récupérer le composant, j'ai pu te créer deux nouvelles seringues. Laquelle veux-tu choisir ?";
 
         choixSeringueUI.rootVisualElement.visible = false;
+
+        texteSeringueGauche.text = "PV : 0\nVitesse : 0\nAttaque : 0";
+        texteSeringueDroite.text = "PV : 0\nVitesse : 0\nAttaque : 0";
     }
 
     public void affichageChoixSeringue(){
+        Debug.Log("1");
         choixSeringueUI.rootVisualElement.visible = true;
         HUD.rootVisualElement.visible = false;
+        Debug.Log("2");
 
         var pvGauche = Random.value;
         var vitGauche = Random.value;
         var atqGauche = Random.value;
+        Debug.Log("3");
 
         var pvDroite = Random.value;
         var vitDroite = Random.value;
         var atqDroite = Random.value;
+        Debug.Log("4");
 
         GetComponent<Quete>().choisirSeringue = false;
+        Debug.Log("5");
 
         texteSeringueGauche.text = "PV : " + pvGauche + "\nVitesse : " + vitGauche + "\nAttaque : " + atqGauche;
         texteSeringueDroite.text = "PV : " + pvDroite + "\nVitesse : " + vitDroite + "\nAttaque : " + atqDroite;
+        
+        Debug.Log("texte gauche : "+texteSeringueGauche.text+" texte droite : "+texteSeringueDroite.text);
+        Debug.Log("6");
     }
 
     void OnSeringueDroiteClick(){

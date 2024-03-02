@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 894678905}
   m_Layer: 0
   m_Name: Quetes
-  m_TagString: Untagged
+  m_TagString: Quete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: 30c04a83555ee864a98949faeb7079fb, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 36b15407f9cd6e74bbf35f0e62cce31a, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 2
 --- !u!1 &1037834813
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 1037834815}
   - component: {fileID: 1037834814}
   m_Layer: 0
-  m_Name: Manager Changement Scene
+  m_Name: SceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -475,7 +475,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188841804}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 1, z: 0}
+  m_LocalPosition: {x: -4, y: 1, z: -4.4}
   m_LocalScale: {x: 1.5, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -699,7 +699,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: 30c04a83555ee864a98949faeb7079fb, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: ea67e457fb4fd804f870f8ff6773fee4, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 1
 --- !u!1 &1565139093
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,19 +870,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7236510749806062713, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.84414345
+      value: 0.8535535
       objectReference: {fileID: 0}
     - target: {fileID: 7236510749806062713, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.34581572
+      value: 0.35355338
       objectReference: {fileID: 0}
     - target: {fileID: 7236510749806062713, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.37909687
+      value: -0.35355338
       objectReference: {fileID: 0}
     - target: {fileID: 7236510749806062713, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.1553028
+      value: 0.1464466
+      objectReference: {fileID: 0}
+    - target: {fileID: 7236510749806062713, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7236510749806062713, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1191,8 +1199,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1409180322}
   - {fileID: 1565139094}
+  - {fileID: 1409180322}
   - {fileID: 945287884}
   m_Father: {fileID: 0}
   m_RootOrder: 4

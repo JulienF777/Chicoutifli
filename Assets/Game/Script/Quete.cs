@@ -58,14 +58,13 @@ public class Quete : MonoBehaviour
             case 1:
                 queteEnCours = true;
                 tableauDialogue[idQuete-1].GetComponent<LancementDialogue>().DebutDialogue();
-                changementScene.GetComponent<ChangementScene>().nomScene = "Niveau1";
                 break;
             case 2:
                 Debug.Log("Quete 2 lancée");
                 break;
         }
 
-        changementScene.GetComponent<ChangementScene>().nomScene = "Niveau"+idQuete.ToString();
+        changementScene.GetComponent<ChangementScene>().nomScene = "Niveau "+idQuete.ToString();
     }
 
     private void finirQuete(){

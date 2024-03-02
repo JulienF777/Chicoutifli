@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class S_EnemySpawner : MonoBehaviour
@@ -7,12 +8,25 @@ public class S_EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject _ennemyPrefab;
     [SerializeField] private int _spawnNumber = 1;
     [SerializeField] private float _ennemyOffset = 1.0f;
+    [SerializeField] private GameObject pickUpItem;
 
+    public int ennemyNumber = 0;
     private List<Vector3> _positions;
+
+    private bool listOfEnnemyIsSet = false;
     // Start is called before the first frame update
     void Start()
     {
         spawnEnnemies();
+        pickUpItem.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if(ennemyNumber == 0 && listOfEnnemyIsSet)
+        {
+            pickUpItem.SetActive(true);
+        }
     }
 
     private void spawnEnnemies()
@@ -26,8 +40,12 @@ public class S_EnemySpawner : MonoBehaviour
         {
             Vector3 spawnPosition = GetValidSpawnPosition(scale, position);
             _positions.Add(spawnPosition); // Add the new position to the list of occupied positions
-            Instantiate(_ennemyPrefab, position + spawnPosition, Quaternion.identity);
+            // Instantiate the ennemy at the spawn position
+            GameObject ennemy = Instantiate(_ennemyPrefab, spawnPosition, Quaternion.identity);
+            ennemy.transform.GetChild(0).GetComponent<AIController>().setSpawner(gameObject);
+            ennemyNumber++;
         }
+        listOfEnnemyIsSet = true;
     }
 
     private Vector3 GetValidSpawnPosition(Vector3 scale, Vector3 position)

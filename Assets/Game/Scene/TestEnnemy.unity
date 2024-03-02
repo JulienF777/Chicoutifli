@@ -234,7 +234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2654874220432081434, guid: 47f409a79f9c25348a63d4aed441dbd3, type: 3}
       propertyPath: attackRange
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2654874220432081434, guid: 47f409a79f9c25348a63d4aed441dbd3, type: 3}
       propertyPath: patrolRange

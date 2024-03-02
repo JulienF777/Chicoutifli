@@ -18,6 +18,7 @@ public class AIController : MonoBehaviour
     public float meshResolution = 2;
     public int edgeResolveIterations = 4;
     public float edgeDistance = 0.5f;
+    public float attackRange = 2;
 
     Vector3 playerLastPosition = Vector3.zero;
     Vector3 m_PlayerPosition;
@@ -25,18 +26,26 @@ public class AIController : MonoBehaviour
     float m_waitTime;
     float m_timeToRotate;
     bool m_PlayerInRange;
+    bool m_PlayerInAttackRange;
     bool m_PlayerNear;
-    bool m_isPatrolling;
-    bool m_caughtPlayer;
 
+
+    //state of the AI 
+    enum AIState
+    {
+        PATROLLING,
+        CHASING,
+        ATTACKING
+    }
+
+    AIState m_currentState;
 
     // Start is called before the first frame update
     void Start()
     {
         m_PlayerPosition = Vector3.zero;
-        m_isPatrolling = true;
-        m_caughtPlayer = false;
         m_PlayerInRange = false;
+        m_PlayerInAttackRange = false;
         m_waitTime = startWaitTime;
         m_timeToRotate = timeToRotate;
 
@@ -45,6 +54,8 @@ public class AIController : MonoBehaviour
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speedWalk;
         navMeshAgent.SetDestination(RandomPoint());
+
+        m_currentState = AIState.PATROLLING;
     }
 
     // Update is called once per frame
@@ -52,13 +63,29 @@ public class AIController : MonoBehaviour
     {
         EnvironmentView();
 
-        if (m_isPatrolling)
+        switch (m_currentState)
         {
-            Patroling();
-        }
-        else
-        {
-            Chasing();
+            case AIState.PATROLLING:
+                Patroling();
+                if (m_PlayerInRange)
+                {
+                    m_currentState = AIState.CHASING;
+                }
+                break;
+            case AIState.CHASING:
+                Chasing();
+                if (m_PlayerInAttackRange)
+                {
+                    m_currentState = AIState.ATTACKING;
+                }
+                break;
+            case AIState.ATTACKING:
+                Attacking();
+                if(!m_PlayerInAttackRange)
+                {
+                    m_currentState = AIState.CHASING;
+                }
+                break;
         }
     }
 
@@ -115,12 +142,18 @@ public class AIController : MonoBehaviour
         }
         else
         {
-            m_isPatrolling = true;
+            m_currentState = AIState.PATROLLING;
             m_PlayerNear = false;
             m_PlayerPosition = Vector3.zero;
             m_waitTime = startWaitTime;
             m_timeToRotate = timeToRotate;
         }
+    }
+
+    private void Attacking()
+    {
+        //Attack the player
+        Debug.Log("Attacking");
     }
 
     void Move(float speed)
@@ -138,11 +171,6 @@ public class AIController : MonoBehaviour
     public void NextPoint()
     {
         navMeshAgent.SetDestination(RandomPoint());
-    }
-
-    void CaughtPlayer()
-    {
-        m_caughtPlayer = true;
     }
 
     void LookingPlayer(Vector3 playerPosition)
@@ -182,19 +210,30 @@ public class AIController : MonoBehaviour
                 if (!Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, obstacleMask))
                 {
                     m_PlayerInRange = true;
-                    m_isPatrolling = false;
+                    m_currentState = AIState.CHASING;
+                    if(distanceToPlayer <= attackRange)
+                    {
+                        m_PlayerInAttackRange = true;
+                    }
+                    else
+                    {
+                        m_PlayerInAttackRange = false;
+                    }
                 }
                 else
                 {
                     m_PlayerInRange = false;
+                    m_PlayerInAttackRange = false;
                 }
             }
             if (Vector3.Distance(transform.position, player.position) > viewRadius)
             {
                 m_PlayerInRange = false;
+                m_PlayerInAttackRange = false;
             }
             if (m_PlayerInRange)
             {
+                //Get the player position
                 m_PlayerPosition = player.transform.position;
             }
         }
@@ -209,6 +248,5 @@ public class AIController : MonoBehaviour
         NavMeshHit hit;
         NavMesh.SamplePosition(randomDirection, out hit, 10, 1);
         return hit.position;
-
     }
 }

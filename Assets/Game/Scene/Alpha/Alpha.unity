@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b8099d5916fe344ace6800d12c63eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueUI: {fileID: 0}
-  HUD: {fileID: 0}
+  dialogueUI: {fileID: 1409180323}
+  HUD: {fileID: 1565139095}
 --- !u!4 &210861688
 Transform:
   m_ObjectHideFlags: 0
@@ -201,6 +201,56 @@ Transform:
   - {fileID: 1916308638}
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &894678902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 894678904}
+  - component: {fileID: 894678903}
+  m_Layer: 0
+  m_Name: Quetes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &894678903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894678902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be2970191b945014e96483baf1df65b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joueur: {fileID: 1799697751}
+  pharmacien: {fileID: 1916308637}
+  seringue: {fileID: 0}
+  tableauDialogue:
+  - {fileID: 1916308637}
+  choisirSeringue: 0
+--- !u!4 &894678904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894678902}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.3436036, y: 4.32264, z: -0.85605264}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &945287883
 GameObject:
@@ -637,8 +687,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2918919006723555358, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1799697752}
   m_SourcePrefab: {fileID: 100100000, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+--- !u!1 &1799697751 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2918919006723555358, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+  m_PrefabInstance: {fileID: 1799697750}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1799697752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799697751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9175160faf23fdb4fb7524dc990bc579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idQuete: 0
+  choixSeringue: 0
+  queteEnCours: 0
 --- !u!1 &1910594661
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,6 +758,7 @@ GameObject:
   - component: {fileID: 1916308640}
   - component: {fileID: 1916308639}
   - component: {fileID: 1916308642}
+  - component: {fileID: 1916308643}
   m_Layer: 0
   m_Name: Pharmacien
   m_TagString: Untagged
@@ -801,6 +875,26 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4, y: 3, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1916308643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916308637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3dd196f37453745bd2f3dce25b5a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    phrases:
+    - "Bienvenue \xE0 ApoCity.\nSi tu veux que je te boost, il faut que tu m'aides."
+    - "J'ai besoin d'un ingr\xE9dient disponible dans le b\xE2timent vert. Je suis
+      trop vieux pour le r\xE9cup\xE9rer de moi-m\xEAme."
+    - "Gr\xE2ce \xE0 \xE7a je pourrais te concocter deux type de seringue, et tu
+      pourras me dire laquelle tu voudras."
+    nomPersonnage: Pharmacien
 --- !u!1 &2086068501
 GameObject:
   m_ObjectHideFlags: 0

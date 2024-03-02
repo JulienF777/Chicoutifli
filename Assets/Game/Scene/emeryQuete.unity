@@ -262,6 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 132585691}
   - component: {fileID: 132585692}
+  - component: {fileID: 132585693}
   m_Layer: 0
   m_Name: Gestion des Quetes
   m_TagString: Untagged
@@ -303,6 +304,68 @@ MonoBehaviour:
   - {fileID: 2075574223}
   - {fileID: 1834454492}
   - {fileID: 1985346720}
+--- !u!114 &132585693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132585689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f89b5cbcbdd604383e4809bc6d6c58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  choixSeringueUI: {fileID: 566914994}
+  HUD: {fileID: 1175111207}
+--- !u!1 &566914992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 566914993}
+  - component: {fileID: 566914994}
+  m_Layer: 0
+  m_Name: HUD Choix Seringue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &566914993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566914992}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1236919433}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &566914994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566914992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 30c04a83555ee864a98949faeb7079fb, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 36b15407f9cd6e74bbf35f0e62cce31a, type: 3}
+  m_SortingOrder: 1
 --- !u!1 &646165190
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,6 +873,7 @@ Transform:
   m_Children:
   - {fileID: 1175111208}
   - {fileID: 1391296379}
+  - {fileID: 566914993}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

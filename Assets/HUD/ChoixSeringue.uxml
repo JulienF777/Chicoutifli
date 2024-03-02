@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: relative; height: 890px; width: 968px; top: 0; left: 430px; align-items: center; justify-content: center;">
+            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="DialogueChoixSeringue" style="position: absolute; top: 724px; left: 100px; height: 110px; width: 739px;" />
+            <ui:Button display-tooltip-when-elided="true" name="BoutonChoixSeringue1" style="position: absolute; top: 172px; left: 116px; height: 444px; width: 268px; background-image: url(&apos;project://database/Assets/HUD/ImageBackgroundHUD/seringue(paslibrededroit).jpg?fileID=2800000&amp;guid=2ce88aba469ca1743b7f2e0168be1076&amp;type=3#seringue(paslibrededroit)&apos;); -unity-background-image-tint-color: rgba(255, 255, 255, 0.36);">
+                <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="TexteBoutonChoixSeringue1" style="position: absolute; top: 118px; left: 70px; -unity-text-align: middle-center; height: 198px; width: 118px;" />
+            </ui:Button>
+            <ui:Button display-tooltip-when-elided="true" name="BoutonChoixSeringue2" style="position: absolute; top: 172px; left: 564px; height: 444px; width: 268px; background-image: url(&apos;project://database/Assets/HUD/ImageBackgroundHUD/seringue(paslibrededroit).jpg?fileID=2800000&amp;guid=2ce88aba469ca1743b7f2e0168be1076&amp;type=3#seringue(paslibrededroit)&apos;); -unity-background-image-tint-color: rgba(255, 255, 255, 0.33);">
+                <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="TexteBoutonChoixSeringue2" style="height: 154px; position: absolute; top: 146px; left: 36px; width: 183px;" />
+            </ui:Button>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

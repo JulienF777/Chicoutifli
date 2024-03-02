@@ -188,11 +188,11 @@ MonoBehaviour:
   meshResolution: 2
   edgeResolveIterations: 4
   edgeDistance: 0.5
-  attackRange: 3
+  attackRange: 2
   attackCooldown: 3
-  hitDamage: 10
+  hitDamage: 5
   hitPrefab: {fileID: 5212124219742474426, guid: 01d95e922596fb0429495726bce514fc, type: 3}
-  health: 120
+  health: 50
 --- !u!1 &4262271333852014229
 GameObject:
   m_ObjectHideFlags: 0

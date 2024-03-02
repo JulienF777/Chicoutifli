@@ -25,6 +25,8 @@ public class AIController : MonoBehaviour
     public GameObject hitPrefab;
 
     public float health = 100;
+    
+    public GameObject spawner;
 
     Vector3 playerLastPosition = Vector3.zero;
     Vector3 m_PlayerPosition;
@@ -328,5 +330,15 @@ public class AIController : MonoBehaviour
         m_canAttack = false;
         yield return new WaitForSeconds(cooldown);
         m_canAttack = true;
+    }
+
+    private void OnDestroy()
+    {
+        spawner.GetComponent<S_EnemySpawner>().ennemyNumber--;
+    }
+
+    public void setSpawner(GameObject newSpawner)
+    {
+        spawner = newSpawner;
     }
 }

@@ -118,6 +118,16 @@ public class S_Player : MonoBehaviour
         _canAttack = true;
     }
 
+    //Setters
+    public void setSpeed(float newSpeed)
+    {
+        _playerSpeed = newSpeed;
+    }
+
+    public void setHitCooldown(float newCooldown)
+    {
+        _hitCooldown = newCooldown;
+    }
     public void setHitDamage(float newHitDamage)
     {
         _hitDamage = newHitDamage;
@@ -127,4 +137,23 @@ public class S_Player : MonoBehaviour
     {
         _maxHealth = newMaxHealth;
     }
+
+    //Getters
+    public float getMaxHealth()
+    {
+        return _maxHealth;
+    }
+    public float getSpeed()
+    {
+        return _playerSpeed;
+    }
+    public float getHitDamage()
+    {
+        return _hitDamage;
+    }
+    public float getHitCooldown()
+    {
+        return _hitCooldown;
+    }
+
 }

@@ -6,6 +6,7 @@ public class S_Projectile : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _timeBeforeDestroy;
+    [SerializeField] private int _damage;
 
     private void Start()
     {
@@ -25,7 +26,8 @@ public class S_Projectile : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            other.GetComponent<S_Player>();
+            Debug.Log("Player hit");
+            other.GetComponent<S_Player>().TakeDamage(_damage);
             Destroy(gameObject);
         }
     }

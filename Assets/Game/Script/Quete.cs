@@ -9,6 +9,7 @@ public class Quete : MonoBehaviour
     public GameObject pharmacien;
     public GameObject seringue;
     public GameObject [] tableauDialogue;
+    public GameObject changementScene;
 
     private int idQuete;
     private bool queteEnCours;
@@ -20,6 +21,10 @@ public class Quete : MonoBehaviour
         idQuete = 1;
         queteEnCours = false;
         choisirSeringue = false;
+
+        changementScene = GameObject.Find("Manager Changement Scene");
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
@@ -58,6 +63,8 @@ public class Quete : MonoBehaviour
                 Debug.Log("Quete 2 lancée");
                 break;
         }
+
+        changementScene.GetComponent<ChangementScene>().nomScene = "Niveau "+idQuete.ToString();
     }
 
     private void finirQuete(){
@@ -69,5 +76,7 @@ public class Quete : MonoBehaviour
                 idQuete = 2;
                 break;
         }
+        changementScene.GetComponent<ChangementScene>().nomScene = "noScene";
+        changementScene.GetComponent<ChangementScene>().changerScene("Alpha");
     }
 }

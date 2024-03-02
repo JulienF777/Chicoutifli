@@ -144,6 +144,10 @@ MonoBehaviour:
   _playerMesh: {fileID: 8136277731905362461}
   _playerCamera: {fileID: 1680581270333684159}
   _rotationSmoothness: 25
+  _hitPrefab: {fileID: 5212124219742474426, guid: 01d95e922596fb0429495726bce514fc, type: 3}
+  _timeBeforeDestroy: 0.1
+  _hitRange: 2
+  _hitCooldown: 0.25
 --- !u!65 &3404041317561267514
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -5,16 +5,31 @@ using static Unity.VisualScripting.Member;
 
 public class S_Player : MonoBehaviour
 {
-    [SerializeField] private float _playerSpeed = 4f;
+    //Child
     [SerializeField] private GameObject _playerMesh;
     [SerializeField] private GameObject _playerCamera;
+
+    //Movement
+    [SerializeField] private float _playerSpeed = 4f;
 
     //Rotation
     [SerializeField] private float _rotationSmoothness = 5f;
 
+    //Fight
+    [SerializeField] private GameObject _hitPrefab;
+    [SerializeField] private float _timeBeforeDestroy = 1f;
+    [SerializeField] private float _hitRange = 2f;
+    [SerializeField] private float _hitCooldown = 1f;
+    private bool _canAttack = true;
+    [SerializeField] private float _hitDamage = 1f;
+
+    //Health
+    [SerializeField] private float _maxHealth = 100f;
+    private float _currentHealth;
+
     void Start()
     {
-
+        initPlayer();
     }
 
 
@@ -22,6 +37,13 @@ public class S_Player : MonoBehaviour
     {
         playerMovement();
         playerRotation();
+        playerFight();
+    }
+
+    private void initPlayer()
+    {
+        _canAttack = true;
+        _currentHealth = _maxHealth;
     }
 
     private void playerMovement()
@@ -65,5 +87,35 @@ public class S_Player : MonoBehaviour
                 _playerMesh.transform.rotation = Quaternion.Slerp(_playerMesh.transform.rotation, targetRotation, Time.deltaTime * _rotationSmoothness);
             }
         }
+    }
+
+    private void playerFight()
+    {
+        if (Input.GetMouseButtonDown(0) && _canAttack)
+        {
+            // Instantie le coup
+
+            Vector3 hitPosition = _playerMesh.transform.position + _playerMesh.transform.forward * _hitRange;
+            GameObject hitEffect = Instantiate(_hitPrefab, hitPosition, _playerMesh.transform.rotation);
+            StartCoroutine(attackCouldown(_hitCooldown));
+            Destroy(hitEffect, _timeBeforeDestroy);
+        }
+    }
+
+    private IEnumerator attackCouldown(float cooldown)
+    {
+        _canAttack = false;
+        yield return new WaitForSeconds(cooldown);
+        _canAttack = true;
+    }
+
+    public void setHitDamage(float newHitDamage)
+    {
+        _hitDamage = newHitDamage;
+    }
+
+    public void setMaxHealth(float newMaxHealth)
+    {
+        _maxHealth = newMaxHealth;
     }
 }

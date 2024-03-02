@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class AIController : MonoBehaviour
 {
     public NavMeshAgent navMeshAgent;
+    public Rigidbody rb;
     public float startWaitTime = 4;
     public float timeToRotate = 2;
     public float speedWalk = 3.5f;
@@ -52,6 +53,7 @@ public class AIController : MonoBehaviour
         m_timeToRotate = timeToRotate;
 
         navMeshAgent = GetComponent<NavMeshAgent>();
+        rb = GetComponent<Rigidbody>();
 
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speedWalk;
@@ -162,6 +164,8 @@ public class AIController : MonoBehaviour
     {
         //Attack the player
         Debug.Log("Attacking");
+        //Set the AI to patrolling
+        m_currentState = AIState.PATROLLING;
     }
 
     void Move(float speed)
@@ -262,5 +266,20 @@ public class AIController : MonoBehaviour
     {
         Debug.Log("AI take damage");
         health -= damage;
+    }
+
+    public void RepulseEnemy(Vector3 repulseDirection)
+    {
+        rb.AddForce(repulseDirection * 10, ForceMode.Impulse);
+        //Stop the repulse after a few seconds
+        StartCoroutine(StopRepulse(0.5f));
+        //Set the AI to patrolling
+        m_currentState = AIState.PATROLLING;
+    }
+
+    private IEnumerator StopRepulse(float time)
+    {
+        yield return new WaitForSeconds(time);
+        rb.velocity = Vector3.zero;
     }
 }

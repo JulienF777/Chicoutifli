@@ -136,6 +136,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6211182405583451182, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: _hitRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211182405583451182, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: _hitDamage
       value: 5
       objectReference: {fileID: 0}

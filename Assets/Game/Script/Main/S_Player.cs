@@ -109,6 +109,28 @@ public class S_Player : MonoBehaviour
             StartCoroutine(attackCouldown(_hitCooldown));
             Destroy(hitEffect, _timeBeforeDestroy);
         }
+        //If right click, the player will attack in zone and inpulse the enemies
+        if (Input.GetMouseButtonDown(1) && _canAttack)
+        {
+            _hitPrefab.transform.localScale = new Vector3(_hitRange, _hitRange, _hitRange);
+            // Instantie le coup
+            GameObject hitEffect = Instantiate(_hitPrefab, _playerMesh.transform.position, _playerMesh.transform.rotation);
+            //Check if he touch an enemy
+            Collider[] hitColliders = Physics.OverlapSphere(_playerMesh.transform.position, _hitRange);
+            for (int i = 0; i < hitColliders.Length; i++)
+            {
+                if (hitColliders[i].gameObject.tag == "Enemy")
+                {
+                    hitColliders[i].gameObject.GetComponent<AIController>().TakeDamage(_hitDamage);
+                    //Repulse the enemy
+                    Vector3 repulseDirection = hitColliders[i].transform.position - transform.position;
+                    repulseDirection.y = 0;
+                    hitColliders[i].gameObject.GetComponent<AIController>().RepulseEnemy(repulseDirection);
+                }
+            }
+            StartCoroutine(attackCouldown(_hitCooldown));
+            Destroy(hitEffect, _timeBeforeDestroy);
+        }
     }
 
     private IEnumerator attackCouldown(float cooldown)
@@ -126,5 +148,21 @@ public class S_Player : MonoBehaviour
     public void setMaxHealth(float newMaxHealth)
     {
         _maxHealth = newMaxHealth;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        _currentHealth -= damage;
+        if (_currentHealth <= 0)
+        {
+            _currentHealth = 0;
+            Debug.Log("Player is dead");
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(_playerMesh.transform.position, _hitRange);
     }
 }

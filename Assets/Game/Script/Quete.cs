@@ -111,7 +111,6 @@ public class Quete : MonoBehaviour
             case 1:
                 queteEnCours = true;
                 tableauDialogue[idQuete-1].GetComponent<LancementDialogue>().DebutDialogue();
-                changementScene.GetComponent<ChangementScene>().nomScene = "Niveau1";
                 break;
             case 2:
                 queteEnCours = true;

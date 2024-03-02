@@ -8,6 +8,7 @@ public class S_Player : MonoBehaviour
     //Child
     [SerializeField] private GameObject _playerMesh;
     [SerializeField] private GameObject _playerCamera;
+    [SerializeField] private Rigidbody _playerRigidbody;
 
     //Movement
     [SerializeField] private float _playerSpeed = 4f;
@@ -104,6 +105,32 @@ public class S_Player : MonoBehaviour
                 if (hitColliders[i].gameObject.tag == "Enemy")
                 {
                     hitColliders[i].gameObject.GetComponent<AIController>().TakeDamage(_hitDamage);
+                    //Repulse the enemy
+                    Vector3 repulseDirection = hitColliders[i].transform.position - transform.position;
+                    repulseDirection.y = 0;
+                    hitColliders[i].gameObject.GetComponent<AIController>().RepulseEnemyBasic(repulseDirection);
+                }
+            }
+            StartCoroutine(attackCouldown(_hitCooldown));
+            Destroy(hitEffect, _timeBeforeDestroy);
+        }
+        //If right click, the player will attack in zone and inpulse the enemies
+        if (Input.GetMouseButtonDown(1) && _canAttack)
+        {
+            _hitPrefab.transform.localScale = new Vector3(_hitRange, _hitRange, _hitRange);
+            // Instantie le coup
+            GameObject hitEffect = Instantiate(_hitPrefab, _playerMesh.transform.position, _playerMesh.transform.rotation);
+            //Check if he touch an enemy
+            Collider[] hitColliders = Physics.OverlapSphere(_playerMesh.transform.position, _hitRange);
+            for (int i = 0; i < hitColliders.Length; i++)
+            {
+                if (hitColliders[i].gameObject.tag == "Enemy")
+                {
+                    hitColliders[i].gameObject.GetComponent<AIController>().TakeDamage(_hitDamage);
+                    //Repulse the enemy
+                    Vector3 repulseDirection = hitColliders[i].transform.position - transform.position;
+                    repulseDirection.y = 0;
+                    hitColliders[i].gameObject.GetComponent<AIController>().RepulseEnemy(repulseDirection);
                 }
             }
             StartCoroutine(attackCouldown(_hitCooldown));
@@ -126,5 +153,35 @@ public class S_Player : MonoBehaviour
     public void setMaxHealth(float newMaxHealth)
     {
         _maxHealth = newMaxHealth;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        _currentHealth -= damage;
+        if (_currentHealth <= 0)
+        {
+            _currentHealth = 0;
+            Debug.Log("Player is dead");
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(_playerMesh.transform.position, _hitRange);
+    }
+
+    public void RepulsePlayer(Vector3 repulseDirection)
+    {
+        //Repulse the player
+        _playerRigidbody.AddForce(repulseDirection.normalized * 5, ForceMode.Impulse);
+        //Stop the impulse after 0.5s
+        StartCoroutine(stopImpulse(0.5f));
+    }
+
+    private IEnumerator stopImpulse(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _playerRigidbody.velocity = Vector3.zero;
     }
 }

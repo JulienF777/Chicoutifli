@@ -142,6 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerMesh: {fileID: 8136277731905362461}
   _playerCamera: {fileID: 1680581270333684159}
+  _playerRigidbody: {fileID: 3455546984408308129}
   _playerSpeed: 10
   _rotationSmoothness: 25
   _hitPrefab: {fileID: 5212124219742474426, guid: 01d95e922596fb0429495726bce514fc, type: 3}
@@ -211,7 +212,7 @@ GameObject:
   - component: {fileID: 5989672035252016128}
   m_Layer: 6
   m_Name: PlayerMesh
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -296,11 +297,11 @@ GameObject:
   - component: {fileID: 2179720761639125039}
   m_Layer: 6
   m_Name: Cube
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4868617905458868251
 Transform:
   m_ObjectHideFlags: 0

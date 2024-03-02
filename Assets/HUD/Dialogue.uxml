@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.53); width: 50%; height: 20%; align-self: center; position: absolute; top: 386px; left: 267px;">
+            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="DialoguePersonnage" style="width: 268px; height: 60px; position: absolute; top: 34px; left: 36px;" />
+            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="NomPersonnage" style="width: 332px; position: absolute; top: 3px; left: 11px;" />
+            <ui:Button text="Suivant" display-tooltip-when-elided="true" enable-rich-text="true" name="BoutonSuivant" style="position: absolute; top: 153px; left: 837px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

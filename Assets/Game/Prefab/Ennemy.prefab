@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2654874220432081434}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,21 +171,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e166956628d6a4fac288aa9252a5f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 8934195908175692797}
-  player: {fileID: 6223009508360091718, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
-  whatIsGround:
+  navMeshAgent: {fileID: 0}
+  startWaitTime: 4
+  timeToRotate: 2
+  speedWalk: 3.5
+  speedRun: 5.5
+  viewRadius: 10
+  viewAngle: 120
+  targetMask:
     serializedVersion: 2
-    m_Bits: 128
-  whatIsPlayer:
+    m_Bits: 0
+  obstacleMask:
     serializedVersion: 2
-    m_Bits: 64
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 5
-  timeBetweenAttacks: 0.5
-  sightRange: 8
+    m_Bits: 0
+  meshResolution: 2
+  edgeResolveIterations: 4
+  edgeDistance: 0.5
   attackRange: 5
-  playerInSightRange: 0
-  playerInAttackRange: 0
   health: 120
 --- !u!1 &4262271333852014229
 GameObject:
@@ -198,7 +200,7 @@ GameObject:
   - component: {fileID: 9035887126650468404}
   m_Layer: 0
   m_Name: Ennemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

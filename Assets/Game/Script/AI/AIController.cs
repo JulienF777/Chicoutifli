@@ -20,6 +20,8 @@ public class AIController : MonoBehaviour
     public float edgeDistance = 0.5f;
     public float attackRange = 2;
 
+    public float health = 100;
+
     Vector3 playerLastPosition = Vector3.zero;
     Vector3 m_PlayerPosition;
 
@@ -86,6 +88,12 @@ public class AIController : MonoBehaviour
                     m_currentState = AIState.CHASING;
                 }
                 break;
+        }
+
+        //If the AI is dead, destroy it
+        if (health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -248,5 +256,11 @@ public class AIController : MonoBehaviour
         NavMeshHit hit;
         NavMesh.SamplePosition(randomDirection, out hit, 10, 1);
         return hit.position;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        Debug.Log("AI take damage");
+        health -= damage;
     }
 }

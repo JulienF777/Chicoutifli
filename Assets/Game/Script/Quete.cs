@@ -77,7 +77,7 @@ public class Quete : MonoBehaviour
                 idQuete = 2;
                 break;
         }
-        changementScene.GetComponent<ChangementScene>().nomScene = "";
+        changementScene.GetComponent<ChangementScene>().nomScene = "noScene";
         changementScene.GetComponent<ChangementScene>().changerScene("Alpha");
     }
 }

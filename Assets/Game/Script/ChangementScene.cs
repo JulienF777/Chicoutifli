@@ -26,7 +26,7 @@ public class ChangementScene : MonoBehaviour
         if (nomScene == "noScene")
         {
             clickChangementScene = false;
-        } else {
+        } else if (scene.name == "Alpha") {
             clickChangementScene = joueur.GetComponent<BoxCollider>().bounds.Intersects(batiment.GetComponent<BoxCollider>().bounds) && Input.GetKeyDown(KeyCode.E);
         }
 

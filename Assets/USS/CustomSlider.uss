@@ -1,0 +1,14 @@
+#HP {
+}
+
+#HP #unity-progress-bar {
+}
+
+#HP #unity-progress-bar VisualElement {
+    background-color: rgb(0, 0, 0);
+}
+
+#HP #unity-progress-bar VisualElement VisualElement {
+    background-color: rgba(255, 0, 0, 0.47);
+    -unity-background-image-tint-color: rgb(0, 0, 0);
+}

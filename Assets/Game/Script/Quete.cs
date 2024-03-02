@@ -23,7 +23,7 @@ public class Quete : MonoBehaviour
         choisirSeringue = false;
 
         changementScene = GameObject.Find("Manager Changement Scene");
-        
+
         DontDestroyOnLoad(this.gameObject);
     }
 
@@ -77,6 +77,7 @@ public class Quete : MonoBehaviour
                 idQuete = 2;
                 break;
         }
+        changementScene.GetComponent<ChangementScene>().nomScene = "";
         changementScene.GetComponent<ChangementScene>().changerScene("Alpha");
     }
 }

@@ -49,13 +49,13 @@ public class S_Player : MonoBehaviour
 
     private void playerMovement()
     {
-        // Obtenir la rotation actuelle de la caméra
+        // Obtenir la rotation actuelle de la camï¿½ra
         Quaternion cameraRotation = _playerCamera.transform.rotation;
 
-        // Réinitialiser la composante Y de la rotation de la caméra
+        // Rï¿½initialiser la composante Y de la rotation de la camï¿½ra
         cameraRotation = Quaternion.Euler(0, cameraRotation.eulerAngles.y, 0);
 
-        // Définir les axes de mouvement en fonction de la rotation de la caméra
+        // Dï¿½finir les axes de mouvement en fonction de la rotation de la camï¿½ra
         Vector3 forward = cameraRotation * Vector3.forward;
         Vector3 right = cameraRotation * Vector3.right;
 
@@ -66,7 +66,7 @@ public class S_Player : MonoBehaviour
         Vector3 horizontal = right * horizontalInput * _playerSpeed * Time.deltaTime;
         Vector3 vertical = forward * verticalInput * _playerSpeed * Time.deltaTime;
 
-        // Appliquer le mouvement relatif à la caméra
+        // Appliquer le mouvement relatif ï¿½ la camï¿½ra
         transform.position += horizontal + vertical;
     }
 
@@ -77,7 +77,7 @@ public class S_Player : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            // Obtenir la direction du joueur vers le point touché par le rayon
+            // Obtenir la direction du joueur vers le point touchï¿½ par le rayon
             Vector3 direction = hit.point - transform.position;
             direction.y = 0f; // Gardez la rotation uniquement sur l'axe horizontal
 
@@ -145,6 +145,16 @@ public class S_Player : MonoBehaviour
         _canAttack = true;
     }
 
+    //Setters
+    public void setSpeed(float newSpeed)
+    {
+        _playerSpeed = newSpeed;
+    }
+
+    public void setHitCooldown(float newCooldown)
+    {
+        _hitCooldown = newCooldown;
+    }
     public void setHitDamage(float newHitDamage)
     {
         _hitDamage = newHitDamage;
@@ -154,6 +164,25 @@ public class S_Player : MonoBehaviour
     {
         _maxHealth = newMaxHealth;
     }
+
+    //Getters
+    public float getMaxHealth()
+    {
+        return _maxHealth;
+    }
+    public float getSpeed()
+    {
+        return _playerSpeed;
+    }
+    public float getHitDamage()
+    {
+        return _hitDamage;
+    }
+    public float getHitCooldown()
+    {
+        return _hitCooldown;
+    }
+
 
     public void TakeDamage(float damage)
     {

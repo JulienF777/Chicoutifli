@@ -17,21 +17,28 @@ public class ChangementScene : MonoBehaviour
     {
         scene = SceneManager.GetActiveScene();
         clickChangementScene = false;
+        nomScene = "noScene";
     }
 
     // Update is called once per frame
     void Update()
     {
-        clickChangementScene = joueur.GetComponent<BoxCollider>().bounds.Intersects(batiment.GetComponent<BoxCollider>().bounds) && Input.GetKeyDown(KeyCode.E);
+        if (nomScene == "noScene")
+        {
+            clickChangementScene = false;
+        } else {
+            clickChangementScene = joueur.GetComponent<BoxCollider>().bounds.Intersects(batiment.GetComponent<BoxCollider>().bounds) && Input.GetKeyDown(KeyCode.E);
+        }
 
         if (clickChangementScene && scene.name == "Alpha")
         {
             changerScene(nomScene);
         }
+
     }
 
     public void changerScene(string nomScene)
     {
-        SceneManager.LoadScene(nomScene);
+         SceneManager.LoadScene(nomScene);
     }
 }

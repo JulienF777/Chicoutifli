@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7236510749806062713}
   - component: {fileID: 4371591096024515517}
   - component: {fileID: 2277584642956927043}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,9 +104,9 @@ GameObject:
   - component: {fileID: 6211182405583451182}
   - component: {fileID: 3404041317561267514}
   - component: {fileID: 3455546984408308129}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,9 +209,9 @@ GameObject:
   - component: {fileID: 6458294055175221099}
   - component: {fileID: 5733852539844264391}
   - component: {fileID: 5989672035252016128}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerMesh
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -294,9 +294,9 @@ GameObject:
   - component: {fileID: 5396822155960157949}
   - component: {fileID: 311348421993951876}
   - component: {fileID: 2179720761639125039}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

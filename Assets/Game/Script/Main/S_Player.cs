@@ -97,6 +97,15 @@ public class S_Player : MonoBehaviour
 
             Vector3 hitPosition = _playerMesh.transform.position + _playerMesh.transform.forward * _hitRange;
             GameObject hitEffect = Instantiate(_hitPrefab, hitPosition, _playerMesh.transform.rotation);
+            //Check if he touch an enemy
+            Collider[] hitColliders = Physics.OverlapSphere(hitPosition, _hitRange);
+            for (int i = 0; i < hitColliders.Length; i++)
+            {
+                if (hitColliders[i].gameObject.tag == "Enemy")
+                {
+                    hitColliders[i].gameObject.GetComponent<AIController>().TakeDamage(_hitDamage);
+                }
+            }
             StartCoroutine(attackCouldown(_hitCooldown));
             Destroy(hitEffect, _timeBeforeDestroy);
         }

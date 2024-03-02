@@ -173,4 +173,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootRange: 10
   attackRange: 5
+  desiredDistance: 5
   randomMoveInterval: 3
+  rotationSpeed: 5
+  shootCooldown: 2
+  bulletPrefab: {fileID: 919132149155446097, guid: b4ef70d6270090144ae5a5b647a29303, type: 3}

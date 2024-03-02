@@ -32,25 +32,21 @@ public class ChoixSeringue : MonoBehaviour
             choixSeringueUI = GameObject.Find("ChoixSeringue").GetComponent<UIDocument>();
             HUD = GameObject.Find("Statistiques").GetComponent<UIDocument>();
             choixSeringueUI.rootVisualElement.visible = false;
+
+            texteSeringueGauche = choixSeringueUI.rootVisualElement.Q<Label>("TexteBoutonChoixSeringue1");
+            texteSeringueDroite = choixSeringueUI.rootVisualElement.Q<Label>("TexteBoutonChoixSeringue2");
+            seringueGauche = choixSeringueUI.rootVisualElement.Q<Button>("BoutonChoixSeringue1");
+            seringueGauche.clicked += OnSeringueGaucheClick;
+            seringueDroite = choixSeringueUI.rootVisualElement.Q<Button>("BoutonChoixSeringue2");
+            seringueDroite.clicked += OnSeringueDroiteClick;
+            texteDialogueSeringue = choixSeringueUI.rootVisualElement.Q<Label>("DialogueChoixSeringue");
+            texteDialogueSeringue.text = "Merci d'avoir récupérer le composant, j'ai pu te créer deux nouvelles seringues. Laquelle veux-tu choisir ?";
+
+            choixSeringueUI.rootVisualElement.visible = false;
+
+            texteSeringueGauche.text = "PV : 0\nVitesse : 0\nAttaque : 0";
+            texteSeringueDroite.text = "PV : 0\nVitesse : 0\nAttaque : 0";
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        texteSeringueGauche = choixSeringueUI.rootVisualElement.Q<Label>("TexteBoutonChoixSeringue1");
-        texteSeringueDroite = choixSeringueUI.rootVisualElement.Q<Label>("TexteBoutonChoixSeringue2");
-        seringueGauche = choixSeringueUI.rootVisualElement.Q<Button>("BoutonChoixSeringue1");
-        seringueGauche.clicked += OnSeringueGaucheClick;
-        seringueDroite = choixSeringueUI.rootVisualElement.Q<Button>("BoutonChoixSeringue2");
-        seringueDroite.clicked += OnSeringueDroiteClick;
-        texteDialogueSeringue = choixSeringueUI.rootVisualElement.Q<Label>("DialogueChoixSeringue");
-        texteDialogueSeringue.text = "Merci d'avoir récupérer le composant, j'ai pu te créer deux nouvelles seringues. Laquelle veux-tu choisir ?";
-
-        choixSeringueUI.rootVisualElement.visible = false;
-
-        texteSeringueGauche.text = "PV : 0\nVitesse : 0\nAttaque : 0";
-        texteSeringueDroite.text = "PV : 0\nVitesse : 0\nAttaque : 0";
     }
 
     public void affichageChoixSeringue(){

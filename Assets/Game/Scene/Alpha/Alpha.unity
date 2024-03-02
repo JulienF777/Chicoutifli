@@ -298,8 +298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f89b5cbcbdd604383e4809bc6d6c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  choixSeringueUI: {fileID: 945287885}
-  HUD: {fileID: 1565139095}
+  choixSeringueUI: {fileID: 0}
+  HUD: {fileID: 0}
 --- !u!1 &945287883
 GameObject:
   m_ObjectHideFlags: 0

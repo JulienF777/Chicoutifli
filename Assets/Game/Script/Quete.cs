@@ -59,6 +59,7 @@ public class Quete : MonoBehaviour
     {
         changementScene = GameObject.Find("SceneManager");
         joueur = GameObject.Find("Player");
+        tableauDialogue[0] = GameObject.Find("Dialogue Pharmacien Quete 1");
         if (SceneManager.GetActiveScene().name == "Alpha"){
             pharmacien = GameObject.Find("Pharmacien");
             seringue = new GameObject();

@@ -146,25 +146,11 @@ public class AIBoss : MonoBehaviour
 
     private void Attack()
     {
+
+        
         if (m_canAttack)
         {
-            Vector3 hitPosition = navMeshAgent.transform.position;
-            GameObject hitEffect = Instantiate(hitPrefab, hitPosition, navMeshAgent.transform.rotation);
-            Collider[] hitColliders = Physics.OverlapSphere(hitPosition, attackRange);
-            for (int i = 0; i < hitColliders.Length; i++)
-            {
-                if (hitColliders[i].gameObject.tag == "Player")
-                {
-                    Debug.Log("Player prends des damages");
-                    hitColliders[i].gameObject.GetComponent<S_Player>().TakeDamage(hitDamage);
-                    //Repulse the player
-                    Vector3 repulseDirection = hitColliders[i].transform.position - transform.position;
-                    repulseDirection.y = 0;
-                    hitColliders[i].gameObject.GetComponent<S_Player>().RepulsePlayer(repulseDirection);
-                }
-            }
             StartCoroutine(attackCouldown(attackCooldown));
-            Destroy(hitEffect, 0.1f);
         }
 
 
@@ -174,6 +160,22 @@ public class AIBoss : MonoBehaviour
     {
         m_canAttack = false;
         yield return new WaitForSeconds(cooldown);
+        Vector3 hitPosition = navMeshAgent.transform.position;
+        GameObject hitEffect = Instantiate(hitPrefab, hitPosition, navMeshAgent.transform.rotation);
+        Collider[] hitColliders = Physics.OverlapSphere(hitPosition, attackRange);
+        for (int i = 0; i < hitColliders.Length; i++)
+        {
+            if (hitColliders[i].gameObject.tag == "Player")
+            {
+                Debug.Log("Player prends des damages");
+                hitColliders[i].gameObject.GetComponent<S_Player>().TakeDamage(hitDamage);
+                //Repulse the player
+                Vector3 repulseDirection = hitColliders[i].transform.position - transform.position;
+                repulseDirection.y = 0;
+                hitColliders[i].gameObject.GetComponent<S_Player>().RepulsePlayer(repulseDirection);
+            }
+        }
+        Destroy(hitEffect, 0.1f);
         m_canAttack = true;
     }
 

@@ -9,7 +9,6 @@ public class S_Hit : MonoBehaviour
     {
         if(other.gameObject.tag == _tagHit)
         {
-            Debug.Log("Attaque");
         }
     }
 }

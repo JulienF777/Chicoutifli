@@ -4,6 +4,7 @@ using UnityEngine;
 using static Unity.VisualScripting.Member;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
 
 public class S_Player : MonoBehaviour
 {
@@ -32,6 +33,9 @@ public class S_Player : MonoBehaviour
 
     //UI
     public UIDocument HUD;
+
+    //VFX
+    public GameObject VFXContainer;
 
     void OnEnable()
     {
@@ -127,7 +131,7 @@ public class S_Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && _canAttack)
         {
             // Instantie le coup
-
+            VFXContainer.GetComponent<VisualEffect>().Play();
             Vector3 hitPosition = _playerMesh.transform.position + _playerMesh.transform.forward * _hitRange;
             GameObject hitEffect = Instantiate(_hitPrefab, hitPosition, _playerMesh.transform.rotation);
             //Check if he touch an enemy

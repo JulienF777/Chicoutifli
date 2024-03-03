@@ -244,12 +244,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4180629263703514140, guid: a936b02a7f057534ba16883f9d65a0d2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5193920759747523624, guid: a936b02a7f057534ba16883f9d65a0d2, type: 3}
       propertyPath: m_Name
       value: spawnerPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 5193920759747523624, guid: a936b02a7f057534ba16883f9d65a0d2, type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314728575214454765, guid: a936b02a7f057534ba16883f9d65a0d2, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5442848564146081552, guid: a936b02a7f057534ba16883f9d65a0d2, type: 3}

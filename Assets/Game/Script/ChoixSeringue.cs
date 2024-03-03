@@ -12,12 +12,19 @@ public class ChoixSeringue : MonoBehaviour
     private Label texteSeringueGauche;
     private Label texteSeringueDroite;
     private Label texteDialogueSeringue;
+    private Label titreSeringueGauche;
+    private Label titreSeringueDroite;
     private Button seringueGauche;
     private Button seringueDroite;
     private GameObject joueur;
+    private TypeSeringue typeSeringue;
+    private float[] statsSeringueGauche;
+    private float[] statsSeringueDroite;
 
-    private float [] statsSeringueGauche;
-    private float [] statsSeringueDroite;
+    void Start()
+    {
+        typeSeringue = new TypeSeringue();
+    }
 
     void OnEnable()
     {
@@ -49,6 +56,8 @@ public class ChoixSeringue : MonoBehaviour
             seringueDroite.clicked += OnSeringueDroiteClick;
             texteDialogueSeringue = choixSeringueUI.rootVisualElement.Q<Label>("DialogueChoixSeringue");
             texteDialogueSeringue.text = "Merci d'avoir récupérer le composant, j'ai pu te créer deux nouvelles seringues. Laquelle veux-tu choisir ?";
+            titreSeringueGauche = choixSeringueUI.rootVisualElement.Q<Label>("TitreSeringueGauche");
+            titreSeringueDroite = choixSeringueUI.rootVisualElement.Q<Label>("TitreSeringueDroite");
 
             choixSeringueUI.rootVisualElement.visible = false;
 
@@ -57,32 +66,135 @@ public class ChoixSeringue : MonoBehaviour
         }
     }
 
-    public void affichageChoixSeringue(){
+    public void affichageChoixSeringue(int idQuete){
+
+        //0 : Vie, 1 : Vitesse, 2 : Attaque, 3 : Kiting
+        var typeSeringueGauche = Random.Range(0, 3);
+        //Les deux autres se font en fonction de typeSeringueGauche
+        var typeSeringueDroite = Random.Range(0, 2);
+
+        switch (idQuete)
+        {
+            case 2:
+                switch (typeSeringueGauche)
+                {
+                    case 0:
+                        statsSeringueGauche = typeSeringue.statsSeringueVieNiveau1;
+                        titreSeringueGauche.text = "Seringue de Vie";
+                        switch (typeSeringueDroite)
+                        {
+                            case 0:
+                                statsSeringueDroite = typeSeringue.statsSeringueVitesseNiveau1;
+                                titreSeringueDroite.text = "Seringue de Vitesse";
+                                break;
+                            case 1:
+                                statsSeringueDroite = typeSeringue.statsSeringueAttaqueNiveau1;
+                                titreSeringueDroite.text = "Seringue d'Attaque";
+                                break;
+                        }
+                        break;
+                    case 1:
+                        statsSeringueGauche = typeSeringue.statsSeringueVitesseNiveau1;
+                        titreSeringueGauche.text = "Seringue de Vitesse";
+                        switch (typeSeringueDroite)
+                        {
+                            case 0:
+                                statsSeringueDroite = typeSeringue.statsSeringueVieNiveau1;
+                                titreSeringueDroite.text = "Seringue de Vie";
+                                break;
+                            case 1:
+                                statsSeringueDroite = typeSeringue.statsSeringueAttaqueNiveau1;
+                                titreSeringueDroite.text = "Seringue d'Attaque";
+                                break;
+                        }
+                        break;
+                    case 2:
+                        statsSeringueGauche = typeSeringue.statsSeringueAttaqueNiveau1;
+                        titreSeringueGauche.text = "Seringue d'Attaque";
+                        switch (typeSeringueDroite)
+                        {
+                            case 0:
+                                statsSeringueDroite = typeSeringue.statsSeringueVitesseNiveau1;
+                                titreSeringueDroite.text = "Seringue de Vitesse";
+                                break;
+                            case 1:
+                                statsSeringueDroite = typeSeringue.statsSeringueVieNiveau1;
+                                titreSeringueDroite.text = "Seringue de Vie";
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 3:
+                switch (typeSeringueGauche)
+                {
+                    case 0:
+                        statsSeringueGauche = typeSeringue.statsSeringueVieNiveau2;
+                        titreSeringueGauche.text = "Seringue de Vie";
+                        switch (typeSeringueDroite)
+                        {
+                            case 0:
+                                statsSeringueDroite = typeSeringue.statsSeringueVitesseNiveau2;
+                                titreSeringueDroite.text = "Seringue de Vitesse";
+                                break;
+                            case 1:
+                                statsSeringueDroite = typeSeringue.statsSeringueAttaqueNiveau2;
+                                titreSeringueDroite.text = "Seringue d'Attaque";
+                                break;
+                        }
+                        break;
+                    case 1:
+                        statsSeringueGauche = typeSeringue.statsSeringueVitesseNiveau2;
+                        titreSeringueGauche.text = "Seringue de Vitesse";
+                        switch (typeSeringueDroite)
+                        {
+                            case 0:
+                                statsSeringueDroite = typeSeringue.statsSeringueVieNiveau2;
+                                titreSeringueDroite.text = "Seringue de Vie";
+                                break;
+                            case 1:
+                                statsSeringueDroite = typeSeringue.statsSeringueAttaqueNiveau2;
+                                titreSeringueDroite.text = "Seringue d'Attaque";
+                                break;
+                        }
+                        break;
+                    case 2:
+                        statsSeringueGauche = typeSeringue.statsSeringueAttaqueNiveau2;
+                        titreSeringueGauche.text = "Seringue d'Attaque";
+                        switch (typeSeringueDroite)
+                        {
+                            case 0:
+                                statsSeringueDroite = typeSeringue.statsSeringueVitesseNiveau2;
+                                titreSeringueDroite.text = "Seringue de Vitesse";
+                                break;
+                            case 1:
+                                statsSeringueDroite = typeSeringue.statsSeringueVieNiveau2;
+                                titreSeringueDroite.text = "Seringue de Vie";
+                                break;
+                        }
+                        break;
+                }
+                break;
+        }
+
         choixSeringueUI.rootVisualElement.visible = true;
         HUD.rootVisualElement.visible = false;
 
-        statsSeringueGauche[0] = Mathf.Round(Random.value*10);
-        statsSeringueGauche[1] = Mathf.Round(Random.value*10);
-        statsSeringueGauche[2] = Mathf.Round(Random.value*10);
-        statsSeringueGauche[3] = (Random.value);
-
-        statsSeringueDroite[0] = Mathf.Round(Random.value*10);
-        statsSeringueDroite[1] = Mathf.Round(Random.value*10);
-        statsSeringueDroite[2] = Mathf.Round(Random.value*10);
-        statsSeringueDroite[3] = (Random.value);
+        //statsSeringueGauche[0] = Mathf.Round(Random.value*10);
 
         GetComponent<Quete>().choisirSeringue = false;
 
-        texteSeringueGauche.text = "PV : " + statsSeringueGauche[0] + "\nVitesse : " + statsSeringueGauche[1] + "\nAttaque : " + statsSeringueGauche[2] + "\nCooldown : " + statsSeringueGauche[3];
-        texteSeringueDroite.text = "PV : " + statsSeringueDroite[0] + "\nVitesse : " + statsSeringueDroite[1] + "\nAttaque : " + statsSeringueDroite[2] + "\nCooldown : " + statsSeringueDroite[3];
+        texteSeringueGauche.text = "PV : " + statsSeringueGauche[0] + "\nAttaque : " + statsSeringueGauche[1] + "\nVitesse : " + statsSeringueGauche[2]  + "\nCooldown : " + statsSeringueGauche[3];
+        texteSeringueDroite.text = "PV : " + statsSeringueDroite[0] + "\nAttaque : " + statsSeringueDroite[1] + "\nVitesse : " + statsSeringueDroite[2]  + "\nCooldown : " + statsSeringueDroite[3];
         
         Debug.Log("texte gauche : "+texteSeringueGauche.text+" texte droite : "+texteSeringueDroite.text);
     }
 
     void OnSeringueDroiteClick(){
+        Debug.Log("Stats : "+statsSeringueDroite[1] + "; Joueur : "+joueur);
         joueur.GetComponent<S_PlayerStatistics>().setMaxHealth(statsSeringueDroite[0]);
-        joueur.GetComponent<S_PlayerStatistics>().setSpeed(statsSeringueDroite[1]);
-        joueur.GetComponent<S_PlayerStatistics>().setHitStength(statsSeringueDroite[2]);
+        joueur.GetComponent<S_PlayerStatistics>().setHitStength(statsSeringueDroite[1]);
+        joueur.GetComponent<S_PlayerStatistics>().setSpeed(statsSeringueDroite[2]);
         joueur.GetComponent<S_PlayerStatistics>().setHitCooldown(statsSeringueDroite[3]);
         Debug.Log("ajouter fonction d'ajout de stats au personnage");
         choixSeringueUI.rootVisualElement.visible = false;
@@ -90,9 +202,10 @@ public class ChoixSeringue : MonoBehaviour
     }
 
     void OnSeringueGaucheClick(){
+        Debug.Log("Stats : "+statsSeringueGauche[1]);
         joueur.GetComponent<S_PlayerStatistics>().setMaxHealth(statsSeringueGauche[0]);
-        joueur.GetComponent<S_PlayerStatistics>().setSpeed(statsSeringueGauche[1]);
-        joueur.GetComponent<S_PlayerStatistics>().setHitStength(statsSeringueGauche[2]);
+        joueur.GetComponent<S_PlayerStatistics>().setHitStength(statsSeringueGauche[1]);
+        joueur.GetComponent<S_PlayerStatistics>().setSpeed(statsSeringueGauche[2]);
         joueur.GetComponent<S_PlayerStatistics>().setHitCooldown(statsSeringueGauche[3]);
         Debug.Log("ajouter fonction d'ajout de stats au personnage");
         choixSeringueUI.rootVisualElement.visible = false;

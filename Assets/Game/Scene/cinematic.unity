@@ -423,14 +423,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152034983}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.81, y: 0.54, z: -14.89}
+  m_LocalRotation: {x: 0.009654476, y: -0.72960526, z: 0.051969867, w: 0.6818226}
+  m_LocalPosition: {x: -7.97, y: 0.55, z: -14.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1834851446}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 5.106, y: -93.732, z: 3.268}
 --- !u!73398921 &152034985
 VFXRenderer:
   serializedVersion: 1
@@ -480,8 +480,8 @@ VisualEffect:
   m_GameObject: {fileID: 152034983}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: d2baf3c25fd6d3e49ba80cf47031b030, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: playerFight
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1
@@ -834,6 +834,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &1353378613 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6223009508360091718, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+  m_PrefabInstance: {fileID: 1581430471}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1581430471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -892,7 +897,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6223009508360091718, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1834851446}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2918919006723555358, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       insertIndex: -1
@@ -921,14 +929,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834851445}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.26084304, y: 0.96769905, z: 1.3221779}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.9708433, y: -0.3423009, z: 14.512177}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 152034984}
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 1353378613}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1931831722
 PrefabInstance:

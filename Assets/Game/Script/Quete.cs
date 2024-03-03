@@ -61,6 +61,7 @@ public class Quete : MonoBehaviour
         joueur = GameObject.Find("Player");
         tableauDialogue[0] = GameObject.Find("Dialogue Pharmacien Quete 1");
         tableauDialogue[1] = GameObject.Find("Dialogue Pharmacien Quete 2");
+        tableauDialogue[2] = GameObject.Find("Dialogue Pharmacien Quete 3");
         if (SceneManager.GetActiveScene().name == "Alpha"){
             pharmacien = GameObject.Find("Pharmacien");
             seringue = new GameObject();
@@ -79,7 +80,7 @@ public class Quete : MonoBehaviour
             {
                 Debug.Log("");
                 if (choisirSeringue){
-                    GetComponent<ChoixSeringue>().affichageChoixSeringue();
+                    GetComponent<ChoixSeringue>().affichageChoixSeringue(idQuete);
                 } else {
                     Debug.Log("ça touche");
                     lancerQuete();
@@ -107,6 +108,13 @@ public class Quete : MonoBehaviour
                 queteEnCours = true;
                 tableauDialogue[idQuete - 1].GetComponent<LancementDialogue>().DebutDialogue();
                 break;
+            case 3:
+                queteEnCours = true;
+                tableauDialogue[idQuete - 1].GetComponent<LancementDialogue>().DebutDialogue();
+                break;
+            case 4:
+                Debug.Log("Combat contre le boss");
+                break;
         }
 
         changementScene.GetComponent<ChangementScene>().nomScene = "Niveau "+idQuete.ToString();
@@ -122,6 +130,12 @@ public class Quete : MonoBehaviour
                 break;
             case 2:
                 Debug.Log("Quete 2 finie");
+                queteEnCours = false;
+                choisirSeringue = true;
+                idQuete++;
+                break;
+            case 3:
+                Debug.Log("Quete 3 finie");
                 queteEnCours = false;
                 choisirSeringue = true;
                 idQuete++;

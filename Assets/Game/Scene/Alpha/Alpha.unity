@@ -230,6 +230,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1678562186}
+  - {fileID: 1529957126}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -268,6 +269,7 @@ MonoBehaviour:
   seringue: {fileID: 1087827558}
   tableauDialogue:
   - {fileID: 1678562185}
+  - {fileID: 1529957125}
   changementScene: {fileID: 0}
   choisirSeringue: 0
 --- !u!4 &894678904
@@ -718,6 +720,58 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: ea67e457fb4fd804f870f8ff6773fee4, type: 3}
   m_SortingOrder: 1
+--- !u!1 &1529957125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1529957126}
+  - component: {fileID: 1529957127}
+  m_Layer: 0
+  m_Name: Dialogue Pharmacien Quete 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1529957126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529957125}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 762568922}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1529957127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529957125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3dd196f37453745bd2f3dce25b5a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    phrases:
+    - "Bienvenue \xE0 ApoCity.\nSi tu veux que je te boost, il faut que tu m'aides."
+    - "J'ai besoin d'un ingr\xE9dient disponible dans le b\xE2timent vert. Je suis
+      trop vieux pour le r\xE9cup\xE9rer de moi-m\xEAme."
+    - "Gr\xE2ce \xE0 \xE7a je pourrais te concocter deux type de seringue, et tu
+      pourras me dire laquelle tu voudras."
+    nomPersonnage: Pharmacien
 --- !u!1 &1565139093
 GameObject:
   m_ObjectHideFlags: 0

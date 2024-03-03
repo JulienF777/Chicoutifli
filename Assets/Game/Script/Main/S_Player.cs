@@ -73,6 +73,7 @@ public class S_Player : MonoBehaviour
     void Update()
     {
         playerMovement();
+        playerRotate();
         playerFight();
         playerAnimation();
     }
@@ -297,7 +298,17 @@ public class S_Player : MonoBehaviour
 
     private void playerRotate()
     {
-        // Le personnage regarde dans la direction dans laquelle il se d�place
+        Debug.Log(_playerRigidbody.velocity.magnitude);
+        // Vérifier si le joueur se déplace (vérifier si la vitesse est supérieure à un seuil)
+        if (_playerRigidbody.velocity.magnitude >= 0.1f)
+        {
+            // Calculer la direction de déplacement du joueur en supprimant la composante y (pour ne pas incliner le joueur)
+            Vector3 direction = new Vector3(_playerRigidbody.velocity.x, 0f, _playerRigidbody.velocity.z);
 
+            // Tourner le joueur pour faire face à la direction de déplacement
+            Quaternion targetLoc = Quaternion.LookRotation(direction);
+            _playerMesh.transform.rotation = Quaternion.Slerp(_playerMesh.transform.rotation, targetLoc, Time.deltaTime * _rotationSmoothness);
+        }
     }
+
 }

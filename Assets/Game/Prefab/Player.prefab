@@ -180,7 +180,6 @@ GameObject:
   - component: {fileID: 6211182405583451182}
   - component: {fileID: 3404041317561267514}
   - component: {fileID: 3455546984408308129}
-  - component: {fileID: 5224571393068910098}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -200,8 +199,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6458294055175221099}
   - {fileID: 4911213715873359462}
+  - {fileID: 6458294055175221099}
   - {fileID: 7236510749806062713}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -638,7 +637,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 3e03b57f8c5fc7848b69a3f4f4f566e0, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: e8bd49f6d8b7947438aeeb9d70bc1480, type: 2}
+      objectReference: {fileID: 9100000, guid: ceb34c767396973499146f838515d8d8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

@@ -73,8 +73,8 @@ public class S_Player : MonoBehaviour
     void Update()
     {
         playerMovement();
-        playerRotation();
         playerFight();
+        playerAnimation();
     }
 
     private void initPlayer()
@@ -127,7 +127,7 @@ public class S_Player : MonoBehaviour
             if (direction != Vector3.zero)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
-                _playerMesh.transform.rotation = Quaternion.Slerp(_playerMesh.transform.rotation, targetRotation, Time.deltaTime * _rotationSmoothness);
+                _playerMesh.transform.rotation = targetRotation;
             }
         }
     }
@@ -136,6 +136,7 @@ public class S_Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && _canAttack)
         {
+            playerRotation();
             // Instantie le coup
             VFXContainer.GetComponent<VisualEffect>().Play();
             Vector3 hitPosition = _playerMesh.transform.position + _playerMesh.transform.forward * _hitRange;
@@ -167,6 +168,7 @@ public class S_Player : MonoBehaviour
         //If right click, the player will attack in zone and inpulse the enemies
         if (Input.GetMouseButtonDown(1) && _canAttack)
         {
+            playerRotation();
             _hitPrefab.transform.localScale = new Vector3(_hitRange, _hitRange, _hitRange);
             // Instantie le coup
             GameObject hitEffect = Instantiate(_hitPrefab, _playerMesh.transform.position, _playerMesh.transform.rotation);
@@ -247,7 +249,7 @@ public class S_Player : MonoBehaviour
     {
         _currentHealth -= damage;
 
-        HUD.rootVisualElement.Q<ProgressBar>("HP").value = _currentHealth / _maxHealth*100;
+        HUD.rootVisualElement.Q<ProgressBar>("HP").value = _currentHealth / _maxHealth * 100;
         Debug.Log(HUD.rootVisualElement.Q<ProgressBar>("HP").value);
         Debug.Log("Current Health : " + _currentHealth + " / " + _maxHealth + "\nDamage taken : " + damage);
 
@@ -277,5 +279,25 @@ public class S_Player : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         _playerRigidbody.velocity = Vector3.zero;
+    }
+
+    private void playerAnimation()
+    {
+        Animator animator = _playerMesh.GetComponent<Animator>();
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+        {
+            animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
+
+    }
+
+    private void playerRotate()
+    {
+        // Le personnage regarde dans la direction dans laquelle il se d�place
+
     }
 }

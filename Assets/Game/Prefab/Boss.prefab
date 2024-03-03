@@ -177,4 +177,7 @@ MonoBehaviour:
   randomMoveInterval: 3
   rotationSpeed: 5
   shootCooldown: 2
-  bulletPrefab: {fileID: 919132149155446097, guid: b4ef70d6270090144ae5a5b647a29303, type: 3}
+  bulletPrefab: {fileID: 6892860743303887564, guid: e5099a385217edf4899e25965d15d455, type: 3}
+  hitPrefab: {fileID: 5212124219742474426, guid: 01d95e922596fb0429495726bce514fc, type: 3}
+  hitDamage: 10
+  attackCooldown: 2

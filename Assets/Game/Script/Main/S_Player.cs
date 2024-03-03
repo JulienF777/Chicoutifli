@@ -73,8 +73,9 @@ public class S_Player : MonoBehaviour
     void Update()
     {
         playerMovement();
-        playerRotation();
+        playerRotate();
         playerFight();
+        playerAnimation();
     }
 
     private void initPlayer()
@@ -85,13 +86,13 @@ public class S_Player : MonoBehaviour
 
     private void playerMovement()
     {
-        // Obtenir la rotation actuelle de la cam�ra
+        // Obtenir la rotation actuelle de la caméra
         Quaternion cameraRotation = _playerCamera.transform.rotation;
 
-        // R�initialiser la composante Y de la rotation de la cam�ra
+        // Réinitialiser la composante Y de la rotation de la caméra
         cameraRotation = Quaternion.Euler(0, cameraRotation.eulerAngles.y, 0);
 
-        // D�finir les axes de mouvement en fonction de la rotation de la cam�ra
+        // Définir les axes de mouvement en fonction de la rotation de la caméra
         Vector3 forward = cameraRotation * Vector3.forward;
         Vector3 right = cameraRotation * Vector3.right;
 
@@ -99,11 +100,17 @@ public class S_Player : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 horizontal = right * horizontalInput * _playerSpeed * Time.deltaTime;
-        Vector3 vertical = forward * verticalInput * _playerSpeed * Time.deltaTime;
+        // Combine horizontal and vertical movement
+        Vector3 movement = right * horizontalInput + forward * verticalInput;
 
-        // Appliquer le mouvement relatif � la cam�ra
-        transform.position += horizontal + vertical;
+        // Normalize the movement vector to ensure consistent speed
+        if (movement.magnitude > 1f)
+        {
+            movement.Normalize();
+        }
+
+        // Set the velocity of the Rigidbody to the normalized movement vector multiplied by speed
+        _playerRigidbody.velocity = movement * _playerSpeed;
     }
 
     private void playerRotation()
@@ -121,7 +128,7 @@ public class S_Player : MonoBehaviour
             if (direction != Vector3.zero)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
-                _playerMesh.transform.rotation = Quaternion.Slerp(_playerMesh.transform.rotation, targetRotation, Time.deltaTime * _rotationSmoothness);
+                _playerMesh.transform.rotation = targetRotation;
             }
         }
     }
@@ -130,6 +137,7 @@ public class S_Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && _canAttack)
         {
+            playerRotation();
             // Instantie le coup
             VFXContainer.GetComponent<VisualEffect>().Play();
             Vector3 hitPosition = _playerMesh.transform.position + _playerMesh.transform.forward * _hitRange;
@@ -146,6 +154,14 @@ public class S_Player : MonoBehaviour
                     repulseDirection.y = 0;
                     hitColliders[i].gameObject.GetComponent<AIController>().RepulseEnemyBasic(repulseDirection);
                 }
+                else if (hitColliders[i].gameObject.tag == "Boss")
+                {
+                    hitColliders[i].gameObject.GetComponent<AIBoss>().TakeDamage(_hitDamage);
+                    //Repulse the enemy
+                    Vector3 repulseDirection = hitColliders[i].transform.position - transform.position;
+                    repulseDirection.y = 0;
+                    hitColliders[i].gameObject.GetComponent<AIBoss>().RepulseEnemyBasic(repulseDirection);
+                }
             }
             StartCoroutine(attackCouldown(_hitCooldown));
             Destroy(hitEffect, _timeBeforeDestroy);
@@ -153,6 +169,7 @@ public class S_Player : MonoBehaviour
         //If right click, the player will attack in zone and inpulse the enemies
         if (Input.GetMouseButtonDown(1) && _canAttack)
         {
+            playerRotation();
             _hitPrefab.transform.localScale = new Vector3(_hitRange, _hitRange, _hitRange);
             // Instantie le coup
             GameObject hitEffect = Instantiate(_hitPrefab, _playerMesh.transform.position, _playerMesh.transform.rotation);
@@ -167,6 +184,15 @@ public class S_Player : MonoBehaviour
                     Vector3 repulseDirection = hitColliders[i].transform.position - transform.position;
                     repulseDirection.y = 0;
                     hitColliders[i].gameObject.GetComponent<AIController>().RepulseEnemy(repulseDirection);
+                }
+
+                else if (hitColliders[i].gameObject.tag == "Boss")
+                {
+                    hitColliders[i].gameObject.GetComponent<AIBoss>().TakeDamage(_hitDamage);
+                    //Repulse the enemy
+                    Vector3 repulseDirection = hitColliders[i].transform.position - transform.position;
+                    repulseDirection.y = 0;
+                    hitColliders[i].gameObject.GetComponent<AIBoss>().RepulseEnemy(repulseDirection);
                 }
             }
             StartCoroutine(attackCouldown(_hitCooldown));
@@ -224,7 +250,7 @@ public class S_Player : MonoBehaviour
     {
         _currentHealth -= damage;
 
-        HUD.rootVisualElement.Q<ProgressBar>("HP").value = _currentHealth / _maxHealth*100;
+        HUD.rootVisualElement.Q<ProgressBar>("HP").value = _currentHealth / _maxHealth * 100;
         Debug.Log(HUD.rootVisualElement.Q<ProgressBar>("HP").value);
         Debug.Log("Current Health : " + _currentHealth + " / " + _maxHealth + "\nDamage taken : " + damage);
 
@@ -232,6 +258,7 @@ public class S_Player : MonoBehaviour
         {
             _currentHealth = 0;
             Debug.Log("Player is dead");
+            SceneManager.LoadScene("MenuMort");
         }
     }
 
@@ -254,4 +281,34 @@ public class S_Player : MonoBehaviour
         yield return new WaitForSeconds(time);
         _playerRigidbody.velocity = Vector3.zero;
     }
+
+    private void playerAnimation()
+    {
+        Animator animator = _playerMesh.GetComponent<Animator>();
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+        {
+            animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
+
+    }
+
+    private void playerRotate()
+    {
+        Debug.Log(_playerRigidbody.velocity.magnitude);
+        // Vérifier si le joueur se déplace (vérifier si la vitesse est supérieure à un seuil)
+        if (_playerRigidbody.velocity.magnitude >= 0.1f)
+        {
+            // Calculer la direction de déplacement du joueur en supprimant la composante y (pour ne pas incliner le joueur)
+            Vector3 direction = new Vector3(_playerRigidbody.velocity.x, 0f, _playerRigidbody.velocity.z);
+
+            // Tourner le joueur pour faire face à la direction de déplacement
+            Quaternion targetLoc = Quaternion.LookRotation(direction);
+            _playerMesh.transform.rotation = Quaternion.Slerp(_playerMesh.transform.rotation, targetLoc, Time.deltaTime * _rotationSmoothness);
+        }
+    }
+
 }

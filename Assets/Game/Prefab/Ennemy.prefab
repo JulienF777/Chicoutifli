@@ -195,6 +195,7 @@ MonoBehaviour:
   hitPrefab: {fileID: 5212124219742474426, guid: 01d95e922596fb0429495726bce514fc, type: 3}
   health: 50
   spawner: {fileID: 0}
+<<<<<<< HEAD
   VFXContainer: {fileID: 5248753929694939982}
 --- !u!1 &1213985256728311880
 GameObject:
@@ -228,6 +229,8 @@ Transform:
   m_Father: {fileID: 1107827877493687011}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> 719c0392f37a2f9eeacd967be67f9fde9c440330
 --- !u!1 &4262271333852014229
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Unity.VisualScripting.Member;
+using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class S_Player : MonoBehaviour
 {
@@ -20,7 +22,7 @@ public class S_Player : MonoBehaviour
     [SerializeField] private GameObject _hitPrefab;
     [SerializeField] private float _timeBeforeDestroy = 1f;
     [SerializeField] private float _hitRange = 2f;
-    [SerializeField] private float _hitCooldown = 1f;
+    [SerializeField] private float _hitCooldown = 2f;
     private bool _canAttack = true;
     [SerializeField] private float _hitDamage = 1f;
 
@@ -28,11 +30,41 @@ public class S_Player : MonoBehaviour
     [SerializeField] private float _maxHealth = 100f;
     private float _currentHealth;
 
+    //UI
+    public UIDocument HUD;
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        HUD = GameObject.Find("Statistiques").GetComponent<UIDocument>();
+        HUD.rootVisualElement.Q<ProgressBar>("HP").value = _maxHealth;
+        HUD.rootVisualElement.Q<Label>("DMGvalue").text = _hitDamage.ToString();
+        HUD.rootVisualElement.Q<Label>("ASvalue").text = _hitCooldown.ToString();
+        HUD.rootVisualElement.Q<Label>("MSvalue").text = _playerSpeed.ToString();
+    }
+
     void Start()
     {
         initPlayer();
-    }
 
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
+
+        if (objs.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     void Update()
     {
@@ -187,6 +219,11 @@ public class S_Player : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _currentHealth -= damage;
+
+        HUD.rootVisualElement.Q<ProgressBar>("HP").value = _currentHealth / _maxHealth*100;
+        Debug.Log(HUD.rootVisualElement.Q<ProgressBar>("HP").value);
+        Debug.Log("Current Health : " + _currentHealth + " / " + _maxHealth + "\nDamage taken : " + damage);
+
         if (_currentHealth <= 0)
         {
             _currentHealth = 0;

@@ -21,7 +21,7 @@ public class AIController : MonoBehaviour
     public float edgeDistance = 0.5f;
     public float attackRange = 2;
     public float attackCooldown = 3;
-    public float hitDamage = 100;
+    public float hitDamage = 5;
     public GameObject hitPrefab;
 
     public float health = 100;

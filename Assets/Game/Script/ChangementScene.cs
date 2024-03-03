@@ -16,6 +16,7 @@ public class ChangementScene : MonoBehaviour
     void Start()
     {
         scene = SceneManager.GetActiveScene();
+        joueur = GameObject.Find("Player");
         clickChangementScene = false;
         nomScene = "noScene";
     }

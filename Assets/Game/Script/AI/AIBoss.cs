@@ -84,8 +84,6 @@ public class AIBoss : MonoBehaviour
         // Create a bullet with size divided by 2
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         bullet.transform.localScale = new Vector3(10f, 10f, 2f);
-        // Rotate the bullet to look at the player
-        bullet.transform.localPosition = transform.position;
         bullet.transform.LookAt(playerTransform);
     }
 

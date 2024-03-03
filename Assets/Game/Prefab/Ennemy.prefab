@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e166956628d6a4fac288aa9252a5f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  navMeshAgent: {fileID: 0}
+  navMeshAgent: {fileID: 8934195908175692797}
   rb: {fileID: 5567021600614739842}
   startWaitTime: 4
   timeToRotate: 2
@@ -193,6 +193,7 @@ MonoBehaviour:
   hitDamage: 5
   hitPrefab: {fileID: 5212124219742474426, guid: 01d95e922596fb0429495726bce514fc, type: 3}
   health: 50
+  spawner: {fileID: 0}
 --- !u!1 &4262271333852014229
 GameObject:
   m_ObjectHideFlags: 0

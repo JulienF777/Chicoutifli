@@ -6,8 +6,13 @@ using UnityEngine.SceneManagement;
 public class ChangementScene : MonoBehaviour
 {
     public GameObject joueur;
-    public GameObject batiment; //à redefinir à chaque changement de niveau
+    public GameObject entreeBatiment1; //à redefinir à chaque changement de niveau
+    public GameObject entreeBatiment2; //à redefinir à chaque changement de niveau
+    public GameObject entreeBatiment3; //à redefinir à chaque changement de niveau
     public string nomScene;
+
+    //Boolean collision entrées niveaux
+    private bool collisionEntree;
 
     private Scene scene;
     private bool clickChangementScene;
@@ -24,11 +29,26 @@ public class ChangementScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (nomScene == "Niveau 1")
+        {
+            collisionEntree = joueur.GetComponent<BoxCollider>().bounds.Intersects(entreeBatiment1.GetComponent<BoxCollider>().bounds);
+        } else if (nomScene == "Niveau 2")
+        {
+            collisionEntree = joueur.GetComponent<BoxCollider>().bounds.Intersects(entreeBatiment2.GetComponent<BoxCollider>().bounds);
+        } else if (nomScene == "Niveau 3")
+        {
+            collisionEntree = joueur.GetComponent<BoxCollider>().bounds.Intersects(entreeBatiment3.GetComponent<BoxCollider>().bounds);
+        }
+
         if (nomScene == "noScene")
         {
             clickChangementScene = false;
         } else if (scene.name == "Alpha") {
-            clickChangementScene = joueur.GetComponent<BoxCollider>().bounds.Intersects(batiment.GetComponent<BoxCollider>().bounds) && Input.GetKeyDown(KeyCode.E);
+            if (collisionEntree)
+            {
+                Debug.Log("E pour changer de niveau");
+            }
+            clickChangementScene = collisionEntree&& Input.GetKeyDown(KeyCode.E);
         }
 
         if (clickChangementScene && scene.name == "Alpha")

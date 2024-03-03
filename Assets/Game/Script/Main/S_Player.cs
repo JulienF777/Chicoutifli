@@ -152,6 +152,14 @@ public class S_Player : MonoBehaviour
                     repulseDirection.y = 0;
                     hitColliders[i].gameObject.GetComponent<AIController>().RepulseEnemyBasic(repulseDirection);
                 }
+                else if (hitColliders[i].gameObject.tag == "Boss")
+                {
+                    hitColliders[i].gameObject.GetComponent<AIBoss>().TakeDamage(_hitDamage);
+                    //Repulse the enemy
+                    Vector3 repulseDirection = hitColliders[i].transform.position - transform.position;
+                    repulseDirection.y = 0;
+                    hitColliders[i].gameObject.GetComponent<AIBoss>().RepulseEnemyBasic(repulseDirection);
+                }
             }
             StartCoroutine(attackCouldown(_hitCooldown));
             Destroy(hitEffect, _timeBeforeDestroy);
@@ -173,6 +181,15 @@ public class S_Player : MonoBehaviour
                     Vector3 repulseDirection = hitColliders[i].transform.position - transform.position;
                     repulseDirection.y = 0;
                     hitColliders[i].gameObject.GetComponent<AIController>().RepulseEnemy(repulseDirection);
+                }
+
+                else if (hitColliders[i].gameObject.tag == "Boss")
+                {
+                    hitColliders[i].gameObject.GetComponent<AIBoss>().TakeDamage(_hitDamage);
+                    //Repulse the enemy
+                    Vector3 repulseDirection = hitColliders[i].transform.position - transform.position;
+                    repulseDirection.y = 0;
+                    hitColliders[i].gameObject.GetComponent<AIBoss>().RepulseEnemy(repulseDirection);
                 }
             }
             StartCoroutine(attackCouldown(_hitCooldown));

@@ -14,8 +14,10 @@ public class AIBoss : MonoBehaviour
     public float shootCooldown = 2f; // Cooldown for shooting
     public GameObject bulletPrefab; // Reference to the bullet prefab
     public GameObject hitPrefab;
+    public Rigidbody rb;
     public float hitDamage;
     public float attackCooldown = 3;
+    public float health = 100;
 
 
     private bool m_canAttack;
@@ -191,6 +193,33 @@ public class AIBoss : MonoBehaviour
         m_canShoot = false;
         yield return new WaitForSeconds(cooldown);
         m_canShoot = true;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void RepulseEnemy(Vector3 repulseDirection)
+    {
+        rb.AddForce(repulseDirection.normalized * 5, ForceMode.Impulse);
+        StartCoroutine(StopRepulsion(0.5f));
+    }
+
+    public void RepulseEnemyBasic(Vector3 repulseDirection)
+    {
+        rb.AddForce(repulseDirection.normalized * 2, ForceMode.Impulse);
+        StartCoroutine(StopRepulsion(0.5f));
+    }
+
+    private IEnumerator StopRepulsion(float time)
+    {
+        yield return new WaitForSeconds(time);
+        rb.velocity = Vector3.zero;
     }
 }
 

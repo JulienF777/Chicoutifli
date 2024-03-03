@@ -85,13 +85,13 @@ public class S_Player : MonoBehaviour
 
     private void playerMovement()
     {
-        // Obtenir la rotation actuelle de la cam�ra
+        // Obtenir la rotation actuelle de la caméra
         Quaternion cameraRotation = _playerCamera.transform.rotation;
 
-        // R�initialiser la composante Y de la rotation de la cam�ra
+        // Réinitialiser la composante Y de la rotation de la caméra
         cameraRotation = Quaternion.Euler(0, cameraRotation.eulerAngles.y, 0);
 
-        // D�finir les axes de mouvement en fonction de la rotation de la cam�ra
+        // Définir les axes de mouvement en fonction de la rotation de la caméra
         Vector3 forward = cameraRotation * Vector3.forward;
         Vector3 right = cameraRotation * Vector3.right;
 
@@ -99,11 +99,17 @@ public class S_Player : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 horizontal = right * horizontalInput * _playerSpeed * Time.deltaTime;
-        Vector3 vertical = forward * verticalInput * _playerSpeed * Time.deltaTime;
+        // Combine horizontal and vertical movement
+        Vector3 movement = right * horizontalInput + forward * verticalInput;
 
-        // Appliquer le mouvement relatif � la cam�ra
-        transform.position += horizontal + vertical;
+        // Normalize the movement vector to ensure consistent speed
+        if (movement.magnitude > 1f)
+        {
+            movement.Normalize();
+        }
+
+        // Set the velocity of the Rigidbody to the normalized movement vector multiplied by speed
+        _playerRigidbody.velocity = movement * _playerSpeed;
     }
 
     private void playerRotation()

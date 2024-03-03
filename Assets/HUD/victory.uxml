@@ -5,7 +5,7 @@
             <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 50%; left: 25%;">
                 <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 40%; align-items: center; justify-content: center;">
                     <ui:Label tabindex="-1" text="FIN" display-tooltip-when-elided="true" name="Label" style="-unity-font: url(&apos;project://database/Assets/Fonts/ProtestRevolution-Regular.ttf?fileID=12800000&amp;guid=7d2d6dbb906304045a95fae3a03cb51e&amp;type=3#ProtestRevolution-Regular&apos;); -unity-font-definition: initial; color: rgb(214, 212, 0); font-size: 120px;" />
-                    <ui:Button text="Retour au menu" display-tooltip-when-elided="true" style="font-size: 25px;" />
+                    <ui:Button text="Retour au menu" display-tooltip-when-elided="true" name="RetourMenu" style="font-size: 25px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

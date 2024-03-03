@@ -54,6 +54,10 @@ public class S_Player : MonoBehaviour
         HUD.rootVisualElement.Q<Label>("DMGvalue").text = _hitDamage.ToString();
         HUD.rootVisualElement.Q<Label>("ASvalue").text = _hitCooldown.ToString();
         HUD.rootVisualElement.Q<Label>("MSvalue").text = _playerSpeed.ToString();
+        if (scene.name == "Alpha")
+        {
+            transform.position = new Vector3(-6, 1, -36);
+        }
     }
 
     void Start()

@@ -80,6 +80,7 @@ public class Quete : MonoBehaviour
                     break;
             }
             seringue = new GameObject();
+            seringue.AddComponent<BoxCollider>();
         } else {
             pharmacien = new GameObject();
             seringue = GameObject.Find("PickUp");
@@ -109,15 +110,6 @@ public class Quete : MonoBehaviour
                 } else if (Input.GetKeyDown(KeyCode.E) && !queteEnCours){
                     Debug.Log("La quête n'est pas lancée.");
                 }
-            }
-        }
-
-        //Si le joueur clique sur E et qu'il est à côté de la seringue, alors la quête est finie
-        if (joueur.GetComponent<BoxCollider>().bounds.Intersects(seringue.GetComponent<BoxCollider>().bounds)) {
-            if (Input.GetKeyDown(KeyCode.E) && queteEnCours){
-                finirQuete();
-            } else if (Input.GetKeyDown(KeyCode.E) && !queteEnCours){
-                Debug.Log("La quête n'est pas lancée.");
             }
         }
     }

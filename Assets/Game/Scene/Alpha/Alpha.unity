@@ -866,9 +866,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     phrases:
-    - "Bienvenue \xE0 ApoCity.\nSi tu veux que je te boost, il faut que tu m'aides."
-    - "J'ai besoin d'un ingr\xE9dient disponible dans le b\xE2timent vert. Je suis
-      trop vieux pour le r\xE9cup\xE9rer de moi-m\xEAme."
+    - "Bienvenue \xE0 ApoCity.\nSi tu veux que je te boost, il faut que tu m'aides.
+      J'ai besoin d'un ingr\xE9dient disponible dans le b\xE2timent vert. Je suis
+      trop vieux pour le r\xE9cup\xE9rer de moi-m\xEAme. Gr\xE2ce \xE0 \xE7a je pourrais
+      te concocter deux type de seringue, et tu pourras me dire laquelle tu voudras."
+    - "Merci de m'\xEAtre venu en aide ptit."
+    - "Gr\xE2ce \xE0 \xE7a je pourrais te concocter deux type de seringue, et tu
+      pourras me dire laquelle tu voudras."
     - "Gr\xE2ce \xE0 \xE7a je pourrais te concocter deux type de seringue, et tu
       pourras me dire laquelle tu voudras."
     nomPersonnage: Pharmacien

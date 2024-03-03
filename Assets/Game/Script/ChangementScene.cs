@@ -60,6 +60,6 @@ public class ChangementScene : MonoBehaviour
 
     public void changerScene(string nomScene)
     {
-         SceneManager.LoadScene(nomScene);
+        SceneManager.LoadScene(nomScene);
     }
 }

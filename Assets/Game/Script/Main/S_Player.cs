@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Unity.VisualScripting.Member;
+using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class S_Player : MonoBehaviour
 {
     //Child
     [SerializeField] private GameObject _playerMesh;
     [SerializeField] private GameObject _playerCamera;
+    [SerializeField] private Rigidbody _playerRigidbody;
 
     //Movement
     [SerializeField] private float _playerSpeed = 4f;
@@ -19,7 +22,7 @@ public class S_Player : MonoBehaviour
     [SerializeField] private GameObject _hitPrefab;
     [SerializeField] private float _timeBeforeDestroy = 1f;
     [SerializeField] private float _hitRange = 2f;
-    [SerializeField] private float _hitCooldown = 1f;
+    [SerializeField] private float _hitCooldown = 2f;
     private bool _canAttack = true;
     [SerializeField] private float _hitDamage = 1f;
 
@@ -27,11 +30,41 @@ public class S_Player : MonoBehaviour
     [SerializeField] private float _maxHealth = 100f;
     private float _currentHealth;
 
+    //UI
+    public UIDocument HUD;
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        HUD = GameObject.Find("Statistiques").GetComponent<UIDocument>();
+        HUD.rootVisualElement.Q<ProgressBar>("HP").value = _maxHealth;
+        HUD.rootVisualElement.Q<Label>("DMGvalue").text = _hitDamage.ToString();
+        HUD.rootVisualElement.Q<Label>("ASvalue").text = _hitCooldown.ToString();
+        HUD.rootVisualElement.Q<Label>("MSvalue").text = _playerSpeed.ToString();
+    }
+
     void Start()
     {
         initPlayer();
-    }
 
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
+
+        if (objs.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     void Update()
     {
@@ -48,13 +81,13 @@ public class S_Player : MonoBehaviour
 
     private void playerMovement()
     {
-        // Obtenir la rotation actuelle de la caméra
+        // Obtenir la rotation actuelle de la camï¿½ra
         Quaternion cameraRotation = _playerCamera.transform.rotation;
 
-        // Réinitialiser la composante Y de la rotation de la caméra
+        // Rï¿½initialiser la composante Y de la rotation de la camï¿½ra
         cameraRotation = Quaternion.Euler(0, cameraRotation.eulerAngles.y, 0);
 
-        // Définir les axes de mouvement en fonction de la rotation de la caméra
+        // Dï¿½finir les axes de mouvement en fonction de la rotation de la camï¿½ra
         Vector3 forward = cameraRotation * Vector3.forward;
         Vector3 right = cameraRotation * Vector3.right;
 
@@ -65,7 +98,7 @@ public class S_Player : MonoBehaviour
         Vector3 horizontal = right * horizontalInput * _playerSpeed * Time.deltaTime;
         Vector3 vertical = forward * verticalInput * _playerSpeed * Time.deltaTime;
 
-        // Appliquer le mouvement relatif à la caméra
+        // Appliquer le mouvement relatif ï¿½ la camï¿½ra
         transform.position += horizontal + vertical;
     }
 
@@ -76,7 +109,7 @@ public class S_Player : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            // Obtenir la direction du joueur vers le point touché par le rayon
+            // Obtenir la direction du joueur vers le point touchï¿½ par le rayon
             Vector3 direction = hit.point - transform.position;
             direction.y = 0f; // Gardez la rotation uniquement sur l'axe horizontal
 
@@ -104,6 +137,32 @@ public class S_Player : MonoBehaviour
                 if (hitColliders[i].gameObject.tag == "Enemy")
                 {
                     hitColliders[i].gameObject.GetComponent<AIController>().TakeDamage(_hitDamage);
+                    //Repulse the enemy
+                    Vector3 repulseDirection = hitColliders[i].transform.position - transform.position;
+                    repulseDirection.y = 0;
+                    hitColliders[i].gameObject.GetComponent<AIController>().RepulseEnemyBasic(repulseDirection);
+                }
+            }
+            StartCoroutine(attackCouldown(_hitCooldown));
+            Destroy(hitEffect, _timeBeforeDestroy);
+        }
+        //If right click, the player will attack in zone and inpulse the enemies
+        if (Input.GetMouseButtonDown(1) && _canAttack)
+        {
+            _hitPrefab.transform.localScale = new Vector3(_hitRange, _hitRange, _hitRange);
+            // Instantie le coup
+            GameObject hitEffect = Instantiate(_hitPrefab, _playerMesh.transform.position, _playerMesh.transform.rotation);
+            //Check if he touch an enemy
+            Collider[] hitColliders = Physics.OverlapSphere(_playerMesh.transform.position, _hitRange);
+            for (int i = 0; i < hitColliders.Length; i++)
+            {
+                if (hitColliders[i].gameObject.tag == "Enemy")
+                {
+                    hitColliders[i].gameObject.GetComponent<AIController>().TakeDamage(_hitDamage);
+                    //Repulse the enemy
+                    Vector3 repulseDirection = hitColliders[i].transform.position - transform.position;
+                    repulseDirection.y = 0;
+                    hitColliders[i].gameObject.GetComponent<AIController>().RepulseEnemy(repulseDirection);
                 }
             }
             StartCoroutine(attackCouldown(_hitCooldown));
@@ -156,4 +215,39 @@ public class S_Player : MonoBehaviour
         return _hitCooldown;
     }
 
+
+    public void TakeDamage(float damage)
+    {
+        _currentHealth -= damage;
+
+        HUD.rootVisualElement.Q<ProgressBar>("HP").value = _currentHealth / _maxHealth*100;
+        Debug.Log(HUD.rootVisualElement.Q<ProgressBar>("HP").value);
+        Debug.Log("Current Health : " + _currentHealth + " / " + _maxHealth + "\nDamage taken : " + damage);
+
+        if (_currentHealth <= 0)
+        {
+            _currentHealth = 0;
+            Debug.Log("Player is dead");
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(_playerMesh.transform.position, _hitRange);
+    }
+
+    public void RepulsePlayer(Vector3 repulseDirection)
+    {
+        //Repulse the player
+        _playerRigidbody.AddForce(repulseDirection.normalized * 5, ForceMode.Impulse);
+        //Stop the impulse after 0.5s
+        StartCoroutine(stopImpulse(0.5f));
+    }
+
+    private IEnumerator stopImpulse(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _playerRigidbody.velocity = Vector3.zero;
+    }
 }

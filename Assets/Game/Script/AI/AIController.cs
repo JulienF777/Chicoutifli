@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class AIController : MonoBehaviour
 {
     public NavMeshAgent navMeshAgent;
+    public Rigidbody rb;
     public float startWaitTime = 4;
     public float timeToRotate = 2;
     public float speedWalk = 3.5f;
@@ -19,8 +20,13 @@ public class AIController : MonoBehaviour
     public int edgeResolveIterations = 4;
     public float edgeDistance = 0.5f;
     public float attackRange = 2;
+    public float attackCooldown = 3;
+    public float hitDamage = 5;
+    public GameObject hitPrefab;
 
     public float health = 100;
+    
+    public GameObject spawner;
 
     Vector3 playerLastPosition = Vector3.zero;
     Vector3 m_PlayerPosition;
@@ -29,6 +35,7 @@ public class AIController : MonoBehaviour
     float m_timeToRotate;
     bool m_PlayerInRange;
     bool m_PlayerInAttackRange;
+    bool m_canAttack;
     bool m_PlayerNear;
 
 
@@ -48,10 +55,12 @@ public class AIController : MonoBehaviour
         m_PlayerPosition = Vector3.zero;
         m_PlayerInRange = false;
         m_PlayerInAttackRange = false;
+        m_canAttack = true;
         m_waitTime = startWaitTime;
         m_timeToRotate = timeToRotate;
 
         navMeshAgent = GetComponent<NavMeshAgent>();
+        rb = GetComponent<Rigidbody>();
 
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speedWalk;
@@ -73,6 +82,10 @@ public class AIController : MonoBehaviour
                 {
                     m_currentState = AIState.CHASING;
                 }
+                if(m_PlayerInAttackRange)
+                {
+                    m_currentState = AIState.ATTACKING;
+                }
                 break;
             case AIState.CHASING:
                 Chasing();
@@ -80,12 +93,20 @@ public class AIController : MonoBehaviour
                 {
                     m_currentState = AIState.ATTACKING;
                 }
+                if (!m_PlayerInRange)
+                {
+                    m_currentState = AIState.PATROLLING;
+                }
                 break;
             case AIState.ATTACKING:
                 Attacking();
-                if(!m_PlayerInAttackRange)
+                if(m_PlayerInRange && !m_PlayerInAttackRange)
                 {
                     m_currentState = AIState.CHASING;
+                }
+                else
+                {
+                    m_currentState = AIState.PATROLLING;
                 }
                 break;
         }
@@ -150,7 +171,6 @@ public class AIController : MonoBehaviour
         }
         else
         {
-            m_currentState = AIState.PATROLLING;
             m_PlayerNear = false;
             m_PlayerPosition = Vector3.zero;
             m_waitTime = startWaitTime;
@@ -160,8 +180,30 @@ public class AIController : MonoBehaviour
 
     private void Attacking()
     {
-        //Attack the player
-        Debug.Log("Attacking");
+        if (m_PlayerInAttackRange && m_canAttack)
+        {
+            //Attack the player
+            Debug.Log("Attacking");
+            // Instantie le coup
+            Vector3 hitPosition = navMeshAgent.transform.position + navMeshAgent.transform.forward * attackRange;
+            GameObject hitEffect = Instantiate(hitPrefab, hitPosition, navMeshAgent.transform.rotation);
+            //Check if he touch an enemy
+            Collider[] hitColliders = Physics.OverlapSphere(hitPosition, attackRange);
+            for (int i = 0; i < hitColliders.Length; i++)
+            {
+                if (hitColliders[i].gameObject.tag == "Player")
+                {
+                    hitColliders[i].gameObject.GetComponent<S_Player>().TakeDamage(hitDamage);
+                    //Repulse the player
+                    Vector3 repulseDirection = hitColliders[i].transform.position - transform.position;
+                    repulseDirection.y = 0;
+                    hitColliders[i].gameObject.GetComponent<S_Player>().RepulsePlayer(repulseDirection);
+                }
+            }
+            StartCoroutine(attackCouldown(attackCooldown));
+            Destroy(hitEffect);
+        }
+
     }
 
     void Move(float speed)
@@ -218,7 +260,6 @@ public class AIController : MonoBehaviour
                 if (!Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, obstacleMask))
                 {
                     m_PlayerInRange = true;
-                    m_currentState = AIState.CHASING;
                     if(distanceToPlayer <= attackRange)
                     {
                         m_PlayerInAttackRange = true;
@@ -262,5 +303,42 @@ public class AIController : MonoBehaviour
     {
         Debug.Log("AI take damage");
         health -= damage;
+    }
+
+    public void RepulseEnemy(Vector3 repulseDirection)
+    {
+        rb.AddForce(repulseDirection * 10, ForceMode.Impulse);
+        //Stop the repulse after a few seconds
+        StartCoroutine(StopRepulse(0.5f));
+    }
+
+    public void RepulseEnemyBasic(Vector3 repulseDirection)
+    {
+        rb.AddForce(repulseDirection * 2, ForceMode.Impulse);
+        //Stop the repulse after a few seconds
+        StartCoroutine(StopRepulse(0.5f));
+    }
+
+    private IEnumerator StopRepulse(float time)
+    {
+        yield return new WaitForSeconds(time);
+        rb.velocity = Vector3.zero;
+    }
+
+    private IEnumerator attackCouldown(float cooldown)
+    {
+        m_canAttack = false;
+        yield return new WaitForSeconds(cooldown);
+        m_canAttack = true;
+    }
+
+    private void OnDestroy()
+    {
+        spawner.GetComponent<S_EnemySpawner>().ennemyNumber--;
+    }
+
+    public void setSpawner(GameObject newSpawner)
+    {
+        spawner = newSpawner;
     }
 }

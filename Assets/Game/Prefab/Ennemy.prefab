@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 0}
+  rb: {fileID: 5567021600614739842}
   startWaitTime: 4
   timeToRotate: 2
   speedWalk: 3.5
@@ -180,15 +181,18 @@ MonoBehaviour:
   viewAngle: 120
   targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   meshResolution: 2
   edgeResolveIterations: 4
   edgeDistance: 0.5
-  attackRange: 5
-  health: 120
+  attackRange: 2
+  attackCooldown: 3
+  hitDamage: 5
+  hitPrefab: {fileID: 5212124219742474426, guid: 01d95e922596fb0429495726bce514fc, type: 3}
+  health: 50
 --- !u!1 &4262271333852014229
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="ContainerHP" style="background-color: rgba(0, 0, 0, 0); width: 50%; align-self: center; height: auto; justify-content: center; bottom: 5%; position: absolute;">
-            <ui:ProgressBar value="50" title="HP" name="HP" style="width: 70%; align-self: center; -unity-font: url(&apos;project://database/Assets/Fonts/Teko-VariableFont_wght.ttf?fileID=12800000&amp;guid=cc90c061692c5af45ba2f12c412c9d08&amp;type=3#Teko-VariableFont_wght&apos;); -unity-font-definition: initial; font-size: 25px; -unity-background-image-tint-color: rgb(255, 0, 0); background-color: rgba(255, 0, 0, 0); background-image: none;" />
+            <ui:ProgressBar value="100" name="HP" style="width: 70%; align-self: center; -unity-font: url(&apos;project://database/Assets/Fonts/Teko-VariableFont_wght.ttf?fileID=12800000&amp;guid=cc90c061692c5af45ba2f12c412c9d08&amp;type=3#Teko-VariableFont_wght&apos;); -unity-font-definition: initial; font-size: 25px; -unity-background-image-tint-color: rgb(255, 0, 0); background-color: rgba(255, 0, 0, 0); background-image: none;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

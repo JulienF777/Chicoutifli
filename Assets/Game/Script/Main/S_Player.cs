@@ -232,6 +232,7 @@ public class S_Player : MonoBehaviour
         {
             _currentHealth = 0;
             Debug.Log("Player is dead");
+            SceneManager.LoadScene("MenuMort");
         }
     }
 

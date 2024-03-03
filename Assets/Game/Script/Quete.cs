@@ -64,6 +64,21 @@ public class Quete : MonoBehaviour
         tableauDialogue[2] = GameObject.Find("Dialogue Pharmacien Quete 3");
         if (SceneManager.GetActiveScene().name == "Alpha"){
             pharmacien = GameObject.Find("Pharmacien");
+            switch (idQuete)
+            {
+                case 1:
+                    pharmacien.transform.position = new Vector3(-6, 1, 1);
+                    Debug.Log("Pharmacien pos 1");
+                    break;
+                case 2:
+                    pharmacien.transform.position = new Vector3(-1, 1, 22);
+                    Debug.Log("Pharmacien pos 2");
+                    break;
+                case 3:
+                    pharmacien.transform.position = new Vector3(15, 1, 27);
+                    Debug.Log("Pharmacien pos 3");
+                    break;
+            }
             seringue = new GameObject();
         } else {
             pharmacien = new GameObject();

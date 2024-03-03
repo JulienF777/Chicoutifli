@@ -86,7 +86,7 @@ public class AIController : MonoBehaviour
                 {
                     m_currentState = AIState.CHASING;
                 }
-                if(m_PlayerInAttackRange)
+                if(m_PlayerInAttackRange && m_PlayerInRange)
                 {
                     m_currentState = AIState.ATTACKING;
                 }
@@ -97,7 +97,7 @@ public class AIController : MonoBehaviour
                 {
                     m_currentState = AIState.ATTACKING;
                 }
-                if (!m_PlayerInRange)
+                else if (!m_PlayerInRange)
                 {
                     m_currentState = AIState.PATROLLING;
                 }
@@ -108,7 +108,7 @@ public class AIController : MonoBehaviour
                 {
                     m_currentState = AIState.CHASING;
                 }
-                else
+                else if(!m_PlayerInRange && !m_PlayerInAttackRange)
                 {
                     m_currentState = AIState.PATROLLING;
                 }
@@ -339,7 +339,10 @@ public class AIController : MonoBehaviour
 
     private void OnDestroy()
     {
-        spawner.GetComponent<S_EnemySpawner>().ennemyNumber--;
+        if(spawner != null)
+        {
+            spawner.GetComponent<S_EnemySpawner>().ennemyNumber--;
+        }
     }
 
     public void setSpawner(GameObject newSpawner)

@@ -54,6 +54,10 @@ public class S_Player : MonoBehaviour
         HUD.rootVisualElement.Q<Label>("DMGvalue").text = _hitDamage.ToString();
         HUD.rootVisualElement.Q<Label>("ASvalue").text = _hitCooldown.ToString();
         HUD.rootVisualElement.Q<Label>("MSvalue").text = _playerSpeed.ToString();
+        if (scene.name == "Alpha")
+        {
+            transform.position = new Vector3(-6, 1, -36);
+        }
     }
 
     void Start()
@@ -73,8 +77,9 @@ public class S_Player : MonoBehaviour
     void Update()
     {
         playerMovement();
-        playerRotation();
+        playerRotate();
         playerFight();
+        playerAnimation();
     }
 
     private void initPlayer()
@@ -127,7 +132,7 @@ public class S_Player : MonoBehaviour
             if (direction != Vector3.zero)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
-                _playerMesh.transform.rotation = Quaternion.Slerp(_playerMesh.transform.rotation, targetRotation, Time.deltaTime * _rotationSmoothness);
+                _playerMesh.transform.rotation = targetRotation;
             }
         }
     }
@@ -136,6 +141,7 @@ public class S_Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && _canAttack)
         {
+            playerRotation();
             // Instantie le coup
             VFXContainer.GetComponent<VisualEffect>().Play();
             Vector3 hitPosition = _playerMesh.transform.position + _playerMesh.transform.forward * _hitRange;
@@ -167,6 +173,7 @@ public class S_Player : MonoBehaviour
         //If right click, the player will attack in zone and inpulse the enemies
         if (Input.GetMouseButtonDown(1) && _canAttack)
         {
+            playerRotation();
             _hitPrefab.transform.localScale = new Vector3(_hitRange, _hitRange, _hitRange);
             // Instantie le coup
             GameObject hitEffect = Instantiate(_hitPrefab, _playerMesh.transform.position, _playerMesh.transform.rotation);
@@ -247,7 +254,7 @@ public class S_Player : MonoBehaviour
     {
         _currentHealth -= damage;
 
-        HUD.rootVisualElement.Q<ProgressBar>("HP").value = _currentHealth / _maxHealth*100;
+        HUD.rootVisualElement.Q<ProgressBar>("HP").value = _currentHealth / _maxHealth * 100;
         Debug.Log(HUD.rootVisualElement.Q<ProgressBar>("HP").value);
         Debug.Log("Current Health : " + _currentHealth + " / " + _maxHealth + "\nDamage taken : " + damage);
 
@@ -278,4 +285,34 @@ public class S_Player : MonoBehaviour
         yield return new WaitForSeconds(time);
         _playerRigidbody.velocity = Vector3.zero;
     }
+
+    private void playerAnimation()
+    {
+        Animator animator = _playerMesh.GetComponent<Animator>();
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+        {
+            animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
+
+    }
+
+    private void playerRotate()
+    {
+        Debug.Log(_playerRigidbody.velocity.magnitude);
+        // Vérifier si le joueur se déplace (vérifier si la vitesse est supérieure à un seuil)
+        if (_playerRigidbody.velocity.magnitude >= 0.1f)
+        {
+            // Calculer la direction de déplacement du joueur en supprimant la composante y (pour ne pas incliner le joueur)
+            Vector3 direction = new Vector3(_playerRigidbody.velocity.x, 0f, _playerRigidbody.velocity.z);
+
+            // Tourner le joueur pour faire face à la direction de déplacement
+            Quaternion targetLoc = Quaternion.LookRotation(direction);
+            _playerMesh.transform.rotation = Quaternion.Slerp(_playerMesh.transform.rotation, targetLoc, Time.deltaTime * _rotationSmoothness);
+        }
+    }
+
 }

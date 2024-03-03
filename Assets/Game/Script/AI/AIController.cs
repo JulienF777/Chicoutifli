@@ -26,7 +26,7 @@ public class AIController : MonoBehaviour
     public GameObject hitPrefab;
 
     public float health = 100;
-    
+
     public GameObject spawner;
 
     Vector3 playerLastPosition = Vector3.zero;
@@ -38,6 +38,8 @@ public class AIController : MonoBehaviour
     bool m_PlayerInAttackRange;
     bool m_canAttack;
     bool m_PlayerNear;
+
+    [SerializeField] private GameObject _meshAnim;
 
     //VFX
     public GameObject VFXContainer;
@@ -77,7 +79,7 @@ public class AIController : MonoBehaviour
     void Update()
     {
         EnvironmentView();
-
+        AIAnim();
         switch (m_currentState)
         {
             case AIState.PATROLLING:
@@ -86,7 +88,7 @@ public class AIController : MonoBehaviour
                 {
                     m_currentState = AIState.CHASING;
                 }
-                if(m_PlayerInAttackRange)
+                if (m_PlayerInAttackRange)
                 {
                     m_currentState = AIState.ATTACKING;
                 }
@@ -104,7 +106,7 @@ public class AIController : MonoBehaviour
                 break;
             case AIState.ATTACKING:
                 Attacking();
-                if(m_PlayerInRange && !m_PlayerInAttackRange)
+                if (m_PlayerInRange && !m_PlayerInAttackRange)
                 {
                     m_currentState = AIState.CHASING;
                 }
@@ -265,7 +267,7 @@ public class AIController : MonoBehaviour
                 if (!Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, obstacleMask))
                 {
                     m_PlayerInRange = true;
-                    if(distanceToPlayer <= attackRange)
+                    if (distanceToPlayer <= attackRange)
                     {
                         m_PlayerInAttackRange = true;
                     }
@@ -345,5 +347,17 @@ public class AIController : MonoBehaviour
     public void setSpawner(GameObject newSpawner)
     {
         spawner = newSpawner;
+    }
+
+    private void AIAnim()
+    {
+        if (navMeshAgent.velocity.magnitude > 0)
+        {
+            _meshAnim.GetComponent<Animator>().SetBool("isRunning", true);
+        }
+        else
+        {
+            _meshAnim.GetComponent<Animator>().SetBool("isRunning", false);
+        }
     }
 }

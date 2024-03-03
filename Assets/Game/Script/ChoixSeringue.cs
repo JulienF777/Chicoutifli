@@ -17,6 +17,7 @@ public class ChoixSeringue : MonoBehaviour
     private Button seringueGauche;
     private Button seringueDroite;
     private GameObject joueur;
+    private GameObject pharmacien;
     private TypeSeringue typeSeringue;
     private float[] statsSeringueGauche;
     private float[] statsSeringueDroite;
@@ -63,6 +64,8 @@ public class ChoixSeringue : MonoBehaviour
 
             texteSeringueGauche.text = "PV : 0\nVitesse : 0\nAttaque : 0";
             texteSeringueDroite.text = "PV : 0\nVitesse : 0\nAttaque : 0";
+
+            pharmacien = GameObject.Find("Pharmacien").transform.GetChild(0).gameObject;
         }
     }
 
@@ -72,6 +75,8 @@ public class ChoixSeringue : MonoBehaviour
         var typeSeringueGauche = Random.Range(0, 3);
         //Les deux autres se font en fonction de typeSeringueGauche
         var typeSeringueDroite = Random.Range(0, 2);
+
+        pharmacien.GetComponent<Animator>().SetBool("isGiving", true);
 
         switch (idQuete)
         {
@@ -199,6 +204,8 @@ public class ChoixSeringue : MonoBehaviour
         Debug.Log("ajouter fonction d'ajout de stats au personnage");
         choixSeringueUI.rootVisualElement.visible = false;
         HUD.rootVisualElement.visible = true;
+        
+        pharmacien.GetComponent<Animator>().SetBool("isGiving", false);
     }
 
     void OnSeringueGaucheClick(){
@@ -210,5 +217,7 @@ public class ChoixSeringue : MonoBehaviour
         Debug.Log("ajouter fonction d'ajout de stats au personnage");
         choixSeringueUI.rootVisualElement.visible = false;
         HUD.rootVisualElement.visible = true;
+        
+        pharmacien.GetComponent<Animator>().SetBool("isGiving", false);
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 public class AIController : MonoBehaviour
 {
@@ -37,6 +38,9 @@ public class AIController : MonoBehaviour
     bool m_PlayerInAttackRange;
     bool m_canAttack;
     bool m_PlayerNear;
+
+    //VFX
+    public GameObject VFXContainer;
 
 
     //state of the AI 
@@ -183,6 +187,7 @@ public class AIController : MonoBehaviour
         if (m_PlayerInAttackRange && m_canAttack)
         {
             //Attack the player
+            VFXContainer.GetComponent<VisualEffect>().Play();
             Debug.Log("Attacking");
             // Instantie le coup
             Vector3 hitPosition = navMeshAgent.transform.position + navMeshAgent.transform.forward * attackRange;

@@ -76,6 +76,7 @@ public class Quete : MonoBehaviour
             //Si le joueur clique sur E et qu'il est à côté du pharmacien, alors la quête est lancée
             if (joueur.GetComponent<BoxCollider>().bounds.Intersects(pharmacien.GetComponent<BoxCollider>().bounds) && Input.GetKeyDown(KeyCode.E) && !queteEnCours) 
             {
+                Debug.Log("");
                 if (choisirSeringue){
                     GetComponent<ChoixSeringue>().affichageChoixSeringue();
                 } else {

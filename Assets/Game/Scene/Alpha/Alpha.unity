@@ -496,7 +496,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -562,6 +562,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1370901810}
   - component: {fileID: 1370901809}
+  - component: {fileID: 1370901811}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -646,6 +647,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1370901811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370901808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &1409180321
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,6 +826,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 200021700140346754, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2277584642956927043, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -820,7 +848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6223009508360091718, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1511469
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6223009508360091718, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -828,7 +856,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6223009508360091718, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.79407835
+      value: 1.95
       objectReference: {fileID: 0}
     - target: {fileID: 6223009508360091718, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -893,6 +921,10 @@ PrefabInstance:
     - target: {fileID: 7236510749806062713, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8472340450589200963, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1031,7 +1063,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 42662f4868f25c141b4cefca182d3103, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1076,7 +1108,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1158,7 +1190,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 42662f4868f25c141b4cefca182d3103, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

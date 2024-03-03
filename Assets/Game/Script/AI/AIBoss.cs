@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,6 +13,13 @@ public class AIBoss : MonoBehaviour
     public float rotationSpeed = 5f; // Speed of rotation
     public float shootCooldown = 2f; // Cooldown for shooting
     public GameObject bulletPrefab; // Reference to the bullet prefab
+    public GameObject hitPrefab;
+    public float hitDamage;
+    public float attackCooldown = 3;
+
+
+    private bool m_canAttack;
+    private bool m_canShoot;
 
     private enum BossState
     {
@@ -23,6 +32,7 @@ public class AIBoss : MonoBehaviour
     private Transform playerTransform; // Reference to the player's transform
     private float nextRandomMoveTime; // Time for next random movement
 
+
     private void Start()
     {
         // Initialize the boss in the "shoot" state
@@ -30,6 +40,8 @@ public class AIBoss : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         nextRandomMoveTime = Time.time + randomMoveInterval;
+        m_canAttack = true;
+        m_canShoot = true;
     }
 
     private void Update()
@@ -50,19 +62,20 @@ public class AIBoss : MonoBehaviour
         }
 
         // Perform random movement if in shooting mode
-        if (currentState == BossState.Shoot && Time.time >= nextRandomMoveTime)
+        if (Time.time >= nextRandomMoveTime)
         {
             PerformRandomMoveAroundPlayer();
             nextRandomMoveTime = Time.time + randomMoveInterval;
+        }
+        if (currentState == BossState.Shoot && m_canShoot)
+        {
             RotateTowardsPlayer();
-            if(Time.time >= shootCooldown)
-            {
-                Shoot();
-                shootCooldown = Time.time + shootCooldown;
-            }
+            Shoot();
+            StartCoroutine(shootCooldownTimer(shootCooldown));
         }
         else if (currentState == BossState.ZoneAttack)
         {
+            Attack();
             MoveAwayFromPlayer();
         }
     }
@@ -83,7 +96,6 @@ public class AIBoss : MonoBehaviour
     {
         // Create a bullet with size divided by 2
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-        bullet.transform.localScale = new Vector3(10f, 10f, 2f);
         bullet.transform.LookAt(playerTransform);
     }
 
@@ -131,4 +143,54 @@ public class AIBoss : MonoBehaviour
         // Set the destination for NavMeshAgent
         navMeshAgent.SetDestination(destination);
     }
+
+    private void Attack()
+    {
+
+        
+        if (m_canAttack)
+        {
+            StartCoroutine(attackCouldown(attackCooldown));
+        }
+
+
+    }
+
+    private IEnumerator attackCouldown(float cooldown)
+    {
+        m_canAttack = false;
+        yield return new WaitForSeconds(cooldown);
+        Vector3 hitPosition = navMeshAgent.transform.position;
+        GameObject hitEffect = Instantiate(hitPrefab, hitPosition, navMeshAgent.transform.rotation);
+        Collider[] hitColliders = Physics.OverlapSphere(hitPosition, attackRange);
+        for (int i = 0; i < hitColliders.Length; i++)
+        {
+            if (hitColliders[i].gameObject.tag == "Player")
+            {
+                Debug.Log("Player prends des damages");
+                hitColliders[i].gameObject.GetComponent<S_Player>().TakeDamage(hitDamage);
+                //Repulse the player
+                Vector3 repulseDirection = hitColliders[i].transform.position - transform.position;
+                repulseDirection.y = 0;
+                hitColliders[i].gameObject.GetComponent<S_Player>().RepulsePlayer(repulseDirection);
+            }
+        }
+        Destroy(hitEffect, 0.1f);
+        m_canAttack = true;
+    }
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(transform.position, attackRange);
+    //}
+
+
+    private IEnumerator shootCooldownTimer(float cooldown)
+    {
+        m_canShoot = false;
+        yield return new WaitForSeconds(cooldown);
+        m_canShoot = true;
+    }
 }
+

@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e166956628d6a4fac288aa9252a5f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  navMeshAgent: {fileID: 0}
+  navMeshAgent: {fileID: 8934195908175692797}
   rb: {fileID: 5567021600614739842}
   startWaitTime: 4
   timeToRotate: 2

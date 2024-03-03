@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class AIBoss : MonoBehaviour
 {
@@ -201,6 +202,9 @@ public class AIBoss : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            Destroy(GameObject.Find("Player"));
+            Destroy(GameObject.Find("Quetes"));
+            SceneManager.LoadScene("MenuFinJeu");
         }
     }
 

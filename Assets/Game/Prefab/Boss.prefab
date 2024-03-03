@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7042878875981586200}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,5 +179,7 @@ MonoBehaviour:
   shootCooldown: 2
   bulletPrefab: {fileID: 6892860743303887564, guid: e5099a385217edf4899e25965d15d455, type: 3}
   hitPrefab: {fileID: 5212124219742474426, guid: 01d95e922596fb0429495726bce514fc, type: 3}
+  rb: {fileID: 0}
   hitDamage: 10
   attackCooldown: 2
+  health: 200

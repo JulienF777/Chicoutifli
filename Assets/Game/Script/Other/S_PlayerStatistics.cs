@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class S_PlayerStatistics : MonoBehaviour
 {
@@ -44,22 +45,25 @@ public class S_PlayerStatistics : MonoBehaviour
     //Setters
     public void setMaxHealth(float maxHealth)
     {
-        _playerMaxHealth = maxHealth;
+        _playerMaxHealth += maxHealth;
         applyStatsToPlayer();
     }
     public void setSpeed(float speed)
     {
-        _playerSpeed = speed;
+        _playerSpeed += speed;
+        GetComponent<S_Player>().HUD.rootVisualElement.Q<Label>("MSvalue").text = "" + _playerSpeed;
         applyStatsToPlayer();
     }
     public void setHitStength(float hitStength)
     {
-        _playerhitStength = hitStength;
+        _playerhitStength += hitStength;
+        GetComponent<S_Player>().HUD.rootVisualElement.Q<Label>("DMGvalue").text = "" + _playerhitStength;
         applyStatsToPlayer();
     }
     public void setHitCooldown(float hitCooldown)
     {
-        _playerhitCooldown = hitCooldown;
+        _playerhitCooldown -= hitCooldown;
+        GetComponent<S_Player>().HUD.rootVisualElement.Q<Label>("ASvalue").text = "" + _playerhitCooldown;
         applyStatsToPlayer();
     }
     //Getters

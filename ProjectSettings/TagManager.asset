@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hittable
   - Enemy
+  - Quete
   layers:
   - Default
   - TransparentFX

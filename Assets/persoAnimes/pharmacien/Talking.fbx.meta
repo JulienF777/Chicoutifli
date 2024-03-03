@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 7b3f88ef72d08e444ba8031d0b10a0ec
+=======
+guid: 3bfae3be1819f7642bb7233e1b9a0a97
+>>>>>>> dd11f7a511a96d71e1d7b1b87f25ebedafb2a26b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -24,13 +28,18 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
+<<<<<<< HEAD
     animationCompression: 3
+=======
+    animationCompression: 1
+>>>>>>> dd11f7a511a96d71e1d7b1b87f25ebedafb2a26b
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
+<<<<<<< HEAD
     clipAnimations:
     - serializedVersion: 16
       name: Talk
@@ -61,6 +70,9 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+=======
+    clipAnimations: []
+>>>>>>> dd11f7a511a96d71e1d7b1b87f25ebedafb2a26b
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -110,6 +122,7 @@ ModelImporter:
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
+<<<<<<< HEAD
     human:
     - boneName: mixamorig:Hips
       humanName: Hips
@@ -893,6 +906,10 @@ ModelImporter:
       position: {x: -3.6514236e-10, y: 0.07001125, z: 3.054547e-10}
       rotation: {x: -0, y: -0, z: -0, w: 1}
       scale: {x: 1.0000006, y: 1.0000002, z: 1.0000005}
+=======
+    human: []
+    skeleton: []
+>>>>>>> dd11f7a511a96d71e1d7b1b87f25ebedafb2a26b
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -903,6 +920,7 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
+<<<<<<< HEAD
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
@@ -910,6 +928,15 @@ ModelImporter:
   animationType: 3
   humanoidOversampling: 1
   avatarSetup: 1
+=======
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+>>>>>>> dd11f7a511a96d71e1d7b1b87f25ebedafb2a26b
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

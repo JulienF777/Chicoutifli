@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3fb5d3bbe40a3fb41865c1fedaaaac04, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -193,6 +193,7 @@ MonoBehaviour:
   hitDamage: 5
   hitPrefab: {fileID: 5212124219742474426, guid: 01d95e922596fb0429495726bce514fc, type: 3}
   health: 50
+  spawner: {fileID: 0}
 --- !u!1 &4262271333852014229
 GameObject:
   m_ObjectHideFlags: 0

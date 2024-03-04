@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7302170496816052614}
   - component: {fileID: 1657397631272792962}
   - component: {fileID: 1601666925674846749}
+  - component: {fileID: 2614114638170636231}
   m_Layer: 0
   m_Name: Object004_Material #98_0
   m_TagString: Untagged
@@ -83,6 +84,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2614114638170636231
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047149841142674842}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 5922bba2d76619a40a0e4bb8ff778e92, type: 2}
 --- !u!1 &1986187859590814200
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,6 +181,7 @@ GameObject:
   - component: {fileID: 6962260528122390972}
   - component: {fileID: 7171995505898554070}
   - component: {fileID: 8942375160259157090}
+  - component: {fileID: 6098067202669664876}
   m_Layer: 0
   m_Name: Object005_Material #99_0
   m_TagString: Untagged
@@ -230,6 +254,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6098067202669664876
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3646685527973090691}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: e53c2a0cb5a359f4c976c08816d46517, type: 2}
 --- !u!1 &4448036980935701202
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,7 +338,7 @@ Transform:
   m_Children:
   - {fileID: 4234624700827013229}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7031400992802413921
 GameObject:

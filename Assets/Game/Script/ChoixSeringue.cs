@@ -43,7 +43,7 @@ public class ChoixSeringue : MonoBehaviour
         statsSeringueGauche = new float[4];
         statsSeringueDroite = new float[4];
 
-        if (scene.name == "Alpha")
+        if (scene.name == "Lobby")
         {
             choixSeringueUI = GameObject.Find("ChoixSeringue").GetComponent<UIDocument>();
             HUD = GameObject.Find("Statistiques").GetComponent<UIDocument>();
@@ -192,7 +192,6 @@ public class ChoixSeringue : MonoBehaviour
         texteSeringueGauche.text = "PV : " + statsSeringueGauche[0] + "\nAttaque : " + statsSeringueGauche[1] + "\nVitesse : " + statsSeringueGauche[2]  + "\nCooldown : " + statsSeringueGauche[3];
         texteSeringueDroite.text = "PV : " + statsSeringueDroite[0] + "\nAttaque : " + statsSeringueDroite[1] + "\nVitesse : " + statsSeringueDroite[2]  + "\nCooldown : " + statsSeringueDroite[3];
         
-        Debug.Log("texte gauche : "+texteSeringueGauche.text+" texte droite : "+texteSeringueDroite.text);
     }
 
     void OnSeringueDroiteClick(){
@@ -205,6 +204,7 @@ public class ChoixSeringue : MonoBehaviour
         choixSeringueUI.rootVisualElement.visible = false;
         HUD.rootVisualElement.visible = true;
         
+        pharmacien.transform.Find("Point Interrogation").gameObject.SetActive(true);
         pharmacien.GetComponent<Animator>().SetBool("isGiving", false);
     }
 
@@ -217,7 +217,8 @@ public class ChoixSeringue : MonoBehaviour
         Debug.Log("ajouter fonction d'ajout de stats au personnage");
         choixSeringueUI.rootVisualElement.visible = false;
         HUD.rootVisualElement.visible = true;
-        
+
+        pharmacien.transform.GetChild(1).gameObject.SetActive(true);
         pharmacien.GetComponent<Animator>().SetBool("isGiving", false);
     }
 }

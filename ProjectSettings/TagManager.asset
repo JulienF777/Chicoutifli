@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Quete
   - Boss
+  - Interactable
   layers:
   - Default
   - TransparentFX

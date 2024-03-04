@@ -302,7 +302,7 @@ public class S_Player : MonoBehaviour
 
     private void playerRotate()
     {
-        Debug.Log(_playerRigidbody.velocity.magnitude);
+        //Debug.Log(_playerRigidbody.velocity.magnitude);
         // Vérifier si le joueur se déplace (vérifier si la vitesse est supérieure à un seuil)
         if (_playerRigidbody.velocity.magnitude >= 0.1f)
         {

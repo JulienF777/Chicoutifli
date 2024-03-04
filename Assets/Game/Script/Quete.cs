@@ -31,18 +31,24 @@ public class Quete : MonoBehaviour
         choisirSeringue = false;
 
         joueur = GameObject.Find("Player");
-        if (SceneManager.GetActiveScene().name == "Alpha"){
+        if (SceneManager.GetActiveScene().name == "Lobby"){
             pharmacien = GameObject.Find("Pharmacien");
             seringue = new GameObject();
+            seringue.AddComponent<BoxCollider>();
         } else {
             Debug.Log("on est bien ici");
             pharmacien = new GameObject();
+            seringue.AddComponent<BoxCollider>();
             seringue = GameObject.Find("PickUp");
         }
 
         changementScene = GameObject.Find("SceneManager");
 
         DontDestroyOnLoad(this.gameObject);
+
+        if (!queteEnCours && !choisirSeringue){
+            pharmacien.transform.Find("Point Exclamation").gameObject.SetActive(true);
+        }
     }
 
     void OnEnable()
@@ -62,7 +68,8 @@ public class Quete : MonoBehaviour
         tableauDialogue[0] = GameObject.Find("Dialogue Pharmacien Quete 1");
         tableauDialogue[1] = GameObject.Find("Dialogue Pharmacien Quete 2");
         tableauDialogue[2] = GameObject.Find("Dialogue Pharmacien Quete 3");
-        if (SceneManager.GetActiveScene().name == "Alpha"){
+
+        if (SceneManager.GetActiveScene().name == "Lobby"){
             pharmacien = GameObject.Find("Pharmacien");
             switch (idQuete)
             {
@@ -79,6 +86,11 @@ public class Quete : MonoBehaviour
                     Debug.Log("Pharmacien pos 3");
                     break;
             }
+
+            if (!queteEnCours && idQuete > 2){
+                GameObject.Find("EntreeBatiment"+(idQuete-1)).SetActive(true);
+            }
+
             seringue = new GameObject();
             seringue.AddComponent<BoxCollider>();
         } else {
@@ -90,15 +102,25 @@ public class Quete : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Alpha"){
-            //Si le joueur clique sur E et qu'il est à côté du pharmacien, alors la quête est lancée
+        if (SceneManager.GetActiveScene().name == "Lobby"){
+            //S'il doit choisir une seringue, on active le point d'interrogation au dessus du pharmacien
+            if (choisirSeringue){
+                pharmacien.transform.GetChild(1).gameObject.SetActive(true);
+                pharmacien.transform.GetChild(2).gameObject.SetActive(false);
+            } else if (!queteEnCours && !choisirSeringue) {
+                pharmacien.transform.GetChild(2).gameObject.SetActive(true);
+                pharmacien.transform.GetChild(1).gameObject.SetActive(false);
+            } else {
+                pharmacien.transform.GetChild(1).gameObject.SetActive(false);
+                pharmacien.transform.GetChild(2).gameObject.SetActive(false);
+            }
+
+            //Si le joueur clique sur E et qu'il est à côté du pharmacien, alors la quête est lancée ou alors on lui propose de choisir une seringue
             if (joueur.GetComponent<BoxCollider>().bounds.Intersects(pharmacien.GetComponent<BoxCollider>().bounds) && Input.GetKeyDown(KeyCode.E) && !queteEnCours) 
             {
-                Debug.Log("");
                 if (choisirSeringue){
                     GetComponent<ChoixSeringue>().affichageChoixSeringue(idQuete);
                 } else {
-                    Debug.Log("ça touche");
                     lancerQuete();
                 }
             }
@@ -132,6 +154,11 @@ public class Quete : MonoBehaviour
                 Debug.Log("Combat contre le boss");
                 break;
         }
+        
+        Debug.Log("EntreeBatiment"+idQuete);
+        Debug.Log(GameObject.Find("EntreeBatiment"+idQuete));
+        GameObject.Find("EntreeBatiment"+idQuete).transform.GetChild(0).transform.gameObject.SetActive(true);
+        pharmacien.transform.Find("Point Exclamation").gameObject.SetActive(false);
 
         changementScene.GetComponent<ChangementScene>().nomScene = "Niveau "+idQuete.ToString();
     }
@@ -158,6 +185,6 @@ public class Quete : MonoBehaviour
                 break;
         }
         changementScene.GetComponent<ChangementScene>().nomScene = "noScene";
-        changementScene.GetComponent<ChangementScene>().changerScene("Alpha");
+        changementScene.GetComponent<ChangementScene>().changerScene("Lobby");
     }
 }

@@ -53,7 +53,7 @@ public class DialogueManager : MonoBehaviour
         
         texteDialogue.text = phrase;
 
-        pharmacien.GetComponent<Animator>().SetBool("isTalking", true);
+        pharmacien.transform.GetChild(0).GetComponent<Animator>().SetBool("isTalking", true);
 
         Debug.Log(phrase);
     }
@@ -62,6 +62,6 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("Fin du dialogue");
         dialogueUI.rootVisualElement.visible = false;
         HUD.rootVisualElement.visible = true;
-        pharmacien.GetComponent<Animator>().SetBool("isTalking", false);
+        pharmacien.transform.GetChild(0).GetComponent<Animator>().SetBool("isTalking", false);
     }
 }

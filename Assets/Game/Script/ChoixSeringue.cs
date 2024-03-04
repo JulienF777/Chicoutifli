@@ -204,7 +204,7 @@ public class ChoixSeringue : MonoBehaviour
         choixSeringueUI.rootVisualElement.visible = false;
         HUD.rootVisualElement.visible = true;
         
-        pharmacien.transform.Find("Point Interrogation").gameObject.SetActive(true);
+        pharmacien.transform.GetChild(1).gameObject.SetActive(true);
         pharmacien.GetComponent<Animator>().SetBool("isGiving", false);
     }
 

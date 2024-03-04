@@ -141,6 +141,7 @@ public class S_Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && _canAttack)
         {
+            _playerMesh.GetComponent<Animator>().SetBool("isHitting", true);
             playerRotation();
             // Instantie le coup
             VFXContainer.GetComponent<VisualEffect>().Play();
@@ -169,10 +170,9 @@ public class S_Player : MonoBehaviour
             }
             StartCoroutine(attackCouldown(_hitCooldown));
             Destroy(hitEffect, _timeBeforeDestroy);
-        }
-        //If right click, the player will attack in zone and inpulse the enemies
-        if (Input.GetMouseButtonDown(1) && _canAttack)
+        } else if (Input.GetMouseButtonDown(1) && _canAttack) //If right click, the player will attack in zone and inpulse the enemies
         {
+            _playerMesh.GetComponent<Animator>().SetBool("isHitting", true);
             playerRotation();
             _hitPrefab.transform.localScale = new Vector3(_hitRange, _hitRange, _hitRange);
             // Instantie le coup
@@ -201,6 +201,8 @@ public class S_Player : MonoBehaviour
             }
             StartCoroutine(attackCouldown(_hitCooldown));
             Destroy(hitEffect, _timeBeforeDestroy);
+        } else {
+            _playerMesh.GetComponent<Animator>().SetBool("isHitting", false);
         }
     }
 

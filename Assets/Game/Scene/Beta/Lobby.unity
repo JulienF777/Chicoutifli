@@ -531,7 +531,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2097390713}
+  - {fileID: 937825513}
   m_Father: {fileID: 2085841382}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -958,10 +958,15 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 937825513}
+  - {fileID: 2097390713}
   m_Father: {fileID: 2085841382}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &135996149 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5720682540513639644, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+  m_PrefabInstance: {fileID: 449237617}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &146012351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,6 +1233,7 @@ Transform:
   - {fileID: 1480253078}
   - {fileID: 2098014838}
   - {fileID: 796745767}
+  - {fileID: 2096365236}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4903,6 +4909,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 559360272713145065, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670913756091347786, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1680581270333684159, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -4923,14 +4937,62 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3704213473279977099, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.483917
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704213473279977099, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 24.828075
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704213473279977099, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.832832
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704213473279977099, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8222311
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704213473279977099, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.36866593
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704213473279977099, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.39566264
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704213473279977099, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.17740496
+      objectReference: {fileID: 0}
     - target: {fileID: 4371591096024515517, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: orthographic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4911213715873359462, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5720682540513639644, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211182405583451182, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: _hitDamage
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211182405583451182, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: _playerMesh
+      value: 
+      objectReference: {fileID: 135996149}
     - target: {fileID: 6211182405583451182, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: _hitCooldown
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6211182405583451182, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: _playerCamera
+      value: 
+      objectReference: {fileID: 1490940390}
     - target: {fileID: 6223009508360091718, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -4941,7 +5003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6223009508360091718, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.08
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 6223009508360091718, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5011,12 +5073,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -45
       objectReference: {fileID: 0}
+    - target: {fileID: 8136277731905362461, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8472340450589200963, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1680581270333684159, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2918919006723555358, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
@@ -5028,18 +5095,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2918919006723555358, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 449237631}
-    - targetCorrespondingSourceObject: {fileID: 1680581270333684159, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 449237621}
   m_SourcePrefab: {fileID: 100100000, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
 --- !u!1 &449237618 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2918919006723555358, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
-  m_PrefabInstance: {fileID: 449237617}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &449237619 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1680581270333684159, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
   m_PrefabInstance: {fileID: 449237617}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &449237620
@@ -5054,23 +5113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be245df8fd70b0040b92f824f914a7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &449237621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 449237619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IsGlobal: 1
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: c215677625187d24caf4f277d9f661ad, type: 2}
 --- !u!114 &449237630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7660,7 +7702,9 @@ MonoBehaviour:
   - {fileID: 1480253077}
   - {fileID: 2098014837}
   - {fileID: 796745766}
+  - {fileID: 2096365235}
   changementScene: {fileID: 266064308}
+  idQuete: 0
   choisirSeringue: 0
 --- !u!4 &725972364
 Transform:
@@ -8478,9 +8522,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     phrases:
-    - Insert text her.
-    - Insert text her.
-    - Insert text her.
+    - Super ! Il me manque plus qu'un objet pour finaliser mon invention.
+    - "Quoi ? Tu penses que je suis derri\xE8re tout \xE7a ? Allez arr\xEAte de te
+      prendre la t\xEAte."
+    - "Rentre dans l'appartement derri\xE8re moi, et ram\xE8ne moi mon objet s'il
+      te plait."
     nomPersonnage: Pharmacien
 --- !u!1 &800024739
 GameObject:
@@ -9551,7 +9597,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1171102682}
-  m_Father: {fileID: 117159198}
+  m_Father: {fileID: 73168905}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 0}
 --- !u!114 &937825514
@@ -15724,12 +15770,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     phrases:
-    - "Merci de m'\xEAtre venu en aide ptit."
+    - "Merci de m'\xEAtre venu en aide mon p'tit. J'ai vu que tu \xE9tais un peu
+      faible, je peux t'aider."
     - "J'ai besoin d'un ingr\xE9dient disponible dans le b\xE2timent vert. Je suis
       trop vieux pour le r\xE9cup\xE9rer de moi-m\xEAme"
     - "Gr\xE2ce \xE0 \xE7a je pourrais te concocter deux type de seringue, et tu
       pourras me dire laquelle tu voudras."
     nomPersonnage: Pharmacien
+--- !u!1 &1490940390 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3918430986884168131, guid: fceaf2bb2a6cd314ea09b66df3848df0, type: 3}
+  m_PrefabInstance: {fileID: 449237617}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1495789605
 GameObject:
   m_ObjectHideFlags: 0
@@ -23809,6 +23861,56 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 175.427, y: -231.731, z: -64.890015}
+--- !u!1 &2096365235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2096365236}
+  - component: {fileID: 2096365237}
+  m_Layer: 0
+  m_Name: Dialogue Pharmacien Quete 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2096365236
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096365235}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 156800359}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2096365237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096365235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3dd196f37453745bd2f3dce25b5a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    phrases:
+    - "AH TU M'AS PERC\xC9 \xC0 JOUR !!!"
+    - "N'esp\xE8re pas pouvoir m'attraper !!!"
+    - '*fonce dans son laboratoire*'
+    nomPersonnage: Pharmacien
 --- !u!1 &2097390712
 GameObject:
   m_ObjectHideFlags: 0
@@ -23841,7 +23943,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1315556231}
-  m_Father: {fileID: 73168905}
+  m_Father: {fileID: 117159198}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 0}
 --- !u!114 &2097390714
@@ -23996,9 +24098,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     phrases:
-    - Insert text her.
-    - Insert text her.
-    - Insert text her.
+    - Maintenant que tu es plus fort, puis-je te demander un autre service ?
+    - "J'ai besoin de r\xE9cup\xE9rer un objet personnel dans ce b\xE2timent \xE0
+      gauche."
+    - "Je pourrais te proposer deux nouvelles seringues en \xE9change."
     nomPersonnage: Pharmacien
 --- !u!1 &2119345152 stripped
 GameObject:

@@ -31,10 +31,13 @@ public class PlayerPositionNiveaux : MonoBehaviour
                 transform.GetChild(0).gameObject.transform.localScale = new Vector3(2, 2, 2);
                 break;
             case "Niveau 3":
-                transform.position = new Vector3(1f, 1f, 10f);
+                transform.position = new Vector3(40, 4, 35);
                 transform.GetChild(0).gameObject.transform.localScale = new Vector3(2, 2, 2);
                 break;
-        
+            case "Niveau 4":
+                transform.position = new Vector3(-10, 1, -1);
+                transform.GetChild(0).gameObject.transform.localScale = new Vector3(2, 2, 2);
+                break;
         }
     }
 }

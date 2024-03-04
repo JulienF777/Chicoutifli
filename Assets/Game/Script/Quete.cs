@@ -12,7 +12,7 @@ public class Quete : MonoBehaviour
     public GameObject [] tableauDialogue;
     public GameObject changementScene;
 
-    private int idQuete;
+    public int idQuete;
     private bool queteEnCours;
     public bool choisirSeringue;
 
@@ -85,6 +85,10 @@ public class Quete : MonoBehaviour
                     pharmacien.transform.position = new Vector3(15, 1, 27);
                     Debug.Log("Pharmacien pos 3");
                     break;
+                case 4:
+                    pharmacien.transform.position = new Vector3(39, 1, 28);
+                    Debug.Log("Pharmacien pos 4");
+                    break;
             }
 
             if (!queteEnCours && idQuete > 2){
@@ -151,14 +155,17 @@ public class Quete : MonoBehaviour
                 tableauDialogue[idQuete - 1].GetComponent<LancementDialogue>().DebutDialogue();
                 break;
             case 4:
+                queteEnCours = true;
+                tableauDialogue[idQuete - 1].GetComponent<LancementDialogue>().DebutDialogue();
                 Debug.Log("Combat contre le boss");
+                pharmacien.SetActive(false);
                 break;
         }
-        
-        Debug.Log("EntreeBatiment"+idQuete);
-        Debug.Log(GameObject.Find("EntreeBatiment"+idQuete));
+
         GameObject.Find("EntreeBatiment"+idQuete).transform.GetChild(0).transform.gameObject.SetActive(true);
-        pharmacien.transform.Find("Point Exclamation").gameObject.SetActive(false);
+        if (pharmacien.activeInHierarchy){
+            pharmacien.transform.Find("Point Exclamation").gameObject.SetActive(false);
+        }
 
         changementScene.GetComponent<ChangementScene>().nomScene = "Niveau "+idQuete.ToString();
     }
@@ -180,7 +187,7 @@ public class Quete : MonoBehaviour
             case 3:
                 Debug.Log("Quete 3 finie");
                 queteEnCours = false;
-                choisirSeringue = true;
+                choisirSeringue = false;
                 idQuete++;
                 break;
         }

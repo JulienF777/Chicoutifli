@@ -38,6 +38,9 @@ public class ChangementScene : MonoBehaviour
             case "Niveau 3":
                 entreeBatiment = GameObject.Find("EntreeBatiment3").transform.GetChild(0).gameObject;
                 break;
+            case "Niveau 4":
+                entreeBatiment = GameObject.Find("EntreeBatiment4").transform.GetChild(0).gameObject;
+                break;
         }
 
         if (entreeBatiment != null)

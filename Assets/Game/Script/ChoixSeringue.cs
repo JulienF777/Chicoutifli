@@ -206,6 +206,13 @@ public class ChoixSeringue : MonoBehaviour
         
         pharmacien.transform.GetChild(1).gameObject.SetActive(true);
         pharmacien.GetComponent<Animator>().SetBool("isGiving", false);
+
+        if (GetComponent<Quete>().idQuete == 2){
+            joueur.transform.GetChild(0).gameObject.SetActive(false);
+            joueur.transform.GetChild(1).gameObject.SetActive(true);
+
+            joueur.GetComponent<S_Player>()._playerMesh = joueur.transform.GetChild(1).gameObject;
+        }
     }
 
     void OnSeringueGaucheClick(){
@@ -220,5 +227,12 @@ public class ChoixSeringue : MonoBehaviour
 
         pharmacien.transform.GetChild(1).gameObject.SetActive(true);
         pharmacien.GetComponent<Animator>().SetBool("isGiving", false);
+
+        if (GetComponent<Quete>().idQuete == 2){
+            joueur.transform.GetChild(0).gameObject.SetActive(false);
+            joueur.transform.GetChild(1).gameObject.SetActive(true);
+            
+            joueur.GetComponent<S_Player>()._playerMesh = joueur.transform.GetChild(1).gameObject;
+        }
     }
 }

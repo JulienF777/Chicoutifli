@@ -9,7 +9,7 @@ using UnityEngine.VFX;
 public class S_Player : MonoBehaviour
 {
     //Child
-    [SerializeField] private GameObject _playerMesh;
+    [SerializeField] public GameObject _playerMesh;
     [SerializeField] private GameObject _playerCamera;
     [SerializeField] private Rigidbody _playerRigidbody;
 
@@ -50,6 +50,7 @@ public class S_Player : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         HUD = GameObject.Find("Statistiques").GetComponent<UIDocument>();
+        _currentHealth = _maxHealth;
         HUD.rootVisualElement.Q<ProgressBar>("HP").value = _maxHealth;
         HUD.rootVisualElement.Q<Label>("DMGvalue").text = _hitDamage.ToString();
         HUD.rootVisualElement.Q<Label>("ASvalue").text = _hitCooldown.ToString();
@@ -115,6 +116,7 @@ public class S_Player : MonoBehaviour
 
         // Set the velocity of the Rigidbody to the normalized movement vector multiplied by speed
         _playerRigidbody.velocity = movement * _playerSpeed;
+        Debug.Log(_playerRigidbody);
     }
 
     private void playerRotation()
@@ -278,6 +280,7 @@ public class S_Player : MonoBehaviour
     {
         //Repulse the player
         _playerRigidbody.AddForce(repulseDirection.normalized * 5, ForceMode.Impulse);
+        _playerCamera.transform.position = _playerCamera.transform.position - repulseDirection.normalized * 5;
         //Stop the impulse after 0.5s
         StartCoroutine(stopImpulse(0.5f));
     }

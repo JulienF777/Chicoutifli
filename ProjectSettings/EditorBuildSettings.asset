@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Game/Scene/Beta/MainMenu.unity
     guid: b49e4a84db65d3d47beb31e68ec01b71
   - enabled: 1
+    path: Assets/Game/Scene/Beta/CinematicIntro.unity
+    guid: efc45858b4ef9c740bb58aec17cecfc8
+  - enabled: 1
     path: Assets/Game/Scene/Beta/Lobby.unity
     guid: 593a0dd6ce9d8fd489325217561f46be
   - enabled: 1
@@ -19,6 +22,9 @@ EditorBuildSettings:
     guid: a730474f4a6c99c45832fd40c671243c
   - enabled: 1
     path: Assets/Game/Scene/Beta/Niveau 3.unity
+    guid: f121b2e7ae5bcd140b05337b7e738a45
+  - enabled: 1
+    path: Assets/Game/Scene/Beta/Niveau 4.unity
     guid: 685d6b079c2ad7841b8017dc29b20aeb
   - enabled: 1
     path: Assets/Game/Scene/Beta/MenuFinJeu.unity

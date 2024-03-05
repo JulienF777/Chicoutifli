@@ -20,23 +20,19 @@ public class PlayerPositionNiveaux : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
         {
             case "Lobby":
-                transform.GetChild(0).gameObject.transform.localScale = new Vector3(1, 1, 1);
+                transform.position = new Vector3(-6, 0.2f, -36);
                 break;
             case "Niveau 1":
-                transform.position = new Vector3(1f, 1f, 10f);
-                transform.GetChild(0).gameObject.transform.localScale = new Vector3(2, 2, 2);
+                transform.position = new Vector3(0, 1f, 4);
                 break;
             case "Niveau 2":
-                transform.position = new Vector3(-30f, 1f, 20f);
-                transform.GetChild(0).gameObject.transform.localScale = new Vector3(2, 2, 2);
+                transform.position = new Vector3(-15, 1f, 11);
                 break;
             case "Niveau 3":
-                transform.position = new Vector3(40, 4, 35);
-                transform.GetChild(0).gameObject.transform.localScale = new Vector3(2, 2, 2);
+                transform.position = new Vector3(27, 9, 34);
                 break;
             case "Niveau 4":
-                transform.position = new Vector3(-10, 1, -1);
-                transform.GetChild(0).gameObject.transform.localScale = new Vector3(2, 2, 2);
+                transform.position = new Vector3(-4, 1, -1);
                 break;
         }
     }

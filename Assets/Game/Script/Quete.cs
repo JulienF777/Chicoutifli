@@ -68,6 +68,7 @@ public class Quete : MonoBehaviour
         tableauDialogue[0] = GameObject.Find("Dialogue Pharmacien Quete 1");
         tableauDialogue[1] = GameObject.Find("Dialogue Pharmacien Quete 2");
         tableauDialogue[2] = GameObject.Find("Dialogue Pharmacien Quete 3");
+        tableauDialogue[3] = GameObject.Find("Dialogue Pharmacien Quete 4");
 
         if (SceneManager.GetActiveScene().name == "Lobby"){
             pharmacien = GameObject.Find("Pharmacien");

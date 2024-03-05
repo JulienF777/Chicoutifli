@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
     }
 
     void LancerJeu(){
-        SceneManager.LoadScene("Lobby");
+        SceneManager.LoadScene("CinematicIntro");
     }
 
     void QuitterJeu(){

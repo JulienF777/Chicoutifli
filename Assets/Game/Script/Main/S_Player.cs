@@ -116,7 +116,6 @@ public class S_Player : MonoBehaviour
 
         // Set the velocity of the Rigidbody to the normalized movement vector multiplied by speed
         _playerRigidbody.velocity = movement * _playerSpeed;
-        Debug.Log(_playerRigidbody);
     }
 
     private void playerRotation()
@@ -280,7 +279,7 @@ public class S_Player : MonoBehaviour
     {
         //Repulse the player
         _playerRigidbody.AddForce(repulseDirection.normalized * 5, ForceMode.Impulse);
-        _playerCamera.transform.position = _playerCamera.transform.position - repulseDirection.normalized * 5;
+        //_playerCamera.transform.position = _playerCamera.transform.position - repulseDirection.normalized;
         //Stop the impulse after 0.5s
         StartCoroutine(stopImpulse(0.5f));
     }

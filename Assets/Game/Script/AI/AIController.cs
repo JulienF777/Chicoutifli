@@ -188,6 +188,8 @@ public class AIController : MonoBehaviour
     {
         if (m_PlayerInAttackRange && m_canAttack)
         {
+            //Animation d'attaque
+            _meshAnim.GetComponent<Animator>().SetBool("isAttack", true);
             //Attack the player
             VFXContainer.GetComponent<VisualEffect>().Play();
             Debug.Log("Attacking");
@@ -209,20 +211,23 @@ public class AIController : MonoBehaviour
             }
             StartCoroutine(attackCouldown(attackCooldown));
             Destroy(hitEffect);
+        } else {
+            _meshAnim.GetComponent<Animator>().SetBool("isAttack", false);
         }
-
     }
 
     void Move(float speed)
     {
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speed;
+        _meshAnim.GetComponent<Animator>().SetBool("isRunning", true);
     }
 
     void Stop()
     {
         navMeshAgent.isStopped = true;
         navMeshAgent.speed = 0;
+        _meshAnim.GetComponent<Animator>().SetBool("isRunning", false);
     }
 
     public void NextPoint()

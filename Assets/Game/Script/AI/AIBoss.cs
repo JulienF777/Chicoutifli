@@ -23,6 +23,7 @@ public class AIBoss : MonoBehaviour
 
     private bool m_canAttack;
     private bool m_canShoot;
+    private GameObject _meshAnim;
 
     private enum BossState
     {
@@ -45,6 +46,7 @@ public class AIBoss : MonoBehaviour
         nextRandomMoveTime = Time.time + randomMoveInterval;
         m_canAttack = true;
         m_canShoot = true;
+        _meshAnim = transform.GetChild(0).gameObject;
     }
 
     private void Update()
@@ -145,6 +147,7 @@ public class AIBoss : MonoBehaviour
     {
         // Set the destination for NavMeshAgent
         navMeshAgent.SetDestination(destination);
+        _meshAnim.GetComponent<Animator>().SetBool("isRunning", true);
     }
 
     private void Attack()
@@ -154,6 +157,11 @@ public class AIBoss : MonoBehaviour
         if (m_canAttack)
         {
             StartCoroutine(attackCouldown(attackCooldown));
+            _meshAnim.GetComponent<Animator>().SetBool("isAttack", true);
+            _meshAnim.GetComponent<Animator>().SetBool("isRunning", false);
+        } else
+        {
+            _meshAnim.GetComponent<Animator>().SetBool("isAttack", false);
         }
 
 
